@@ -47,6 +47,12 @@ section.has-light-background {
 @import "../template/theme";
 // ---------------------------------------------
 
+// fix small in li
+.reveal ul li small,
+.reveal p small {
+  line-height: 2.3em;
+}
+
 $grid-float-breakpoint: 700px;
 
 /** github logo from my other sites**/
@@ -134,4 +140,8 @@ and (max-width: $grid-float-breakpoint) and (min-width : 370px)
 	img{
 		max-width: 100%;
 	}
+}
+
+.hide-site-networks .site-networks {
+  display: none;
 }
