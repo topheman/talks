@@ -61,6 +61,7 @@
 					<p>
 						<br/><br/>by <a href="http://labs.topheman.com">Christophe Rosset</a> / <a href="https://twitter.com/topheman">@topheman</a>
 					</p>
+          <p><a href="http://bestofweb.paris/" title="Best Of Web" style="font-size: 60%;">Best Of Web 2017</a></p>
 					<!--<p>
 						<small><a href="http://www.meetup.com/fr-FR/D3-js-Paris/">D3.js Paris</a> meetup - nov 2016</small>
             / <small><a href="http://www.meetup.com/fr-FR/ReactJS-Paris/">ReactJS Paris</a> meetup - nov 2016</small>
@@ -94,7 +95,8 @@ const valueline = d3.line()
 const svg = d3.select('body').append('svg');
 svg.append('path')
   .data([data])
-  .attr('d', valueline);
+  .attr('d', valueline)
+  .on('mouseover', handler);
           </code></pre>
           <p><small><a href="http://bl.ocks.org/d3noob/3c040800ff6457717cca586ae9547dbf" target="_blank">Some simple example from bl.ocks.org</a></small></p>
         </section>
@@ -107,47 +109,43 @@ svg.append('path')
           <p><a href="./images/reconciliation-error.png" target="_blank">React reconciliation</a></p>
           <p><small><a href="https://www.reddit.com/r/reactjs/comments/2riuwa/mutating_reacts_dom/" target="_blank">Mutating React's DOM</a></small></p>
         </section>
-        <!--<section>
-          <h2>Mixing d3 &amp; React</h2>
-          <ul>
-            <li>How to get them to work together ?</li>
-            <li>What are the different approaches ?</li>
-          </ul>
-        </section>-->
         <section>
-          <h4>Our charts's interface</h4>
-          <pre><code data-trim>
-const chartProps = {
-  data,
-  maxX,
-  maxY,
-  minX,
-  minY,
-  width,
-  height,
-  margin
-}
-
-&lt;SomeChart {...chartProps} /&gt;
-          </code></pre>
+          <h2>Mixing d3 &amp; React</h2>
+          <p>Presenting 3 different approaches to mix those two libraries.</p>
         </section>
         <section>
           <h2>1) Vanilla d3 based</h2>
-          <pre><code class="hljs" data-trim>
-import { select } from 'd3-selection';
-
-// ...
-
-render() {
-  return (
-    &lt;svg ref={(node) =&gt; this.rootNode = select(node)}&gt;&lt;/svg&gt;
-  );
-}
-          </code></pre>
           <ul>
             <li>Pure vanilla d3 code embedded in React component</li>
             <li>Direct access to embeded DOM node</li>
           </ul>
+        </section>
+        <section>
+          <pre><code class="hljs" data-trim style="max-height: 600px">
+import React from 'react';
+import { select } from 'd3-selection';
+// ...
+
+class TransitionMultiLineChart extends React.Component {
+
+  componentDidMount() {
+    // prepare svg root node for d3
+    this.lineGroup = this.rootNode.append('g');
+    this.axisLeftGroup = this.lineGroup.append('g');
+    this.axisBottomGroup = this.lineGroup.append('g');
+  }
+
+  componentDidUpdate() {
+    // do some d3 magic mutating exposed nodes
+  }
+
+  render() {
+    return (
+      &lt;svg ref={(node) => this.rootNode = select(node)}&gt;&lt;/svg&gt;
+    );
+  }
+}
+          </code></pre>
           <p>
             <a href="https://topheman.github.io/d3-react-experiments/devtools/#/d3/transition-multi-line-chart" target="_blank">DEMO2 (transition)</a>
           </p>
@@ -155,17 +153,13 @@ render() {
         <section>
           <h2>Vanilla d3 based</h2>
           <ul>
-            <li>Prevent re-render (of d3's root DOM node)</li>
+            <li>Don't mess with d3's root DOM node by rendering the exact same markup</li>
             <li>Use React's <a href="./images/react-lifecycle-hooks.png" target="_blank">lifecycle hooks</a>
               <ul>
-                <li><code>componentDidMount</code></li>
-                <li><code>componentWillReceiveProps</code></li>
-                <li><code>shouldComponentUpdate</code></li>
-                <li><code>componentWillUpdate</code></li>
-                <li><code>componentDidUpdate</code></li>
+                <li>To ensure props update taken in account</li>
+                <li>For optimization (split data update vs size update)</li>
               </ul>
             </li>
-            <li>Keep apply updates from state changes</li>
           </ul>
           <p><a href="http://dev.topheman.com/d3-react-chart-components/" target="_blank">SEE BLOG POST</a></p>
         </section>
@@ -266,15 +260,20 @@ DrawCircles = ({ data, ...props }) => {
         <section>
           <h2>Approaches addressed</h2>
           <ul>
-            <li>Embed vanilla d3 code inside React component</li>
-            <li>Provide a DOM like structure to d3 that renders to react (react-faux-dom)
+            <li>Embed vanilla d3 code inside React component
               <ul>
-                <li><a href="https://github.com/Olical/react-faux-dom" target="_blank">react-faux-dom</a></li>
+                <li><a href="https://topheman.github.io/d3-react-experiments/devtools/#/d3/transition-multi-line-chart" target="_blank">d3 embedded</a></li>
+              </ul>
+            </li>
+            <li>Provide a DOM like structure to d3 that renders to react
+              <ul>
+                <li><a href="https://topheman.github.io/d3-react-experiments/devtools/#/d3/react-faux-dom/static-multi-line-chart" target="_blank">react-faux-dom</a></li>
               </ul>
             </li>
             <li>Pure JSX components
               <ul>
-                <li><a href="https://formidable.com/open-source/victory/" target="_blank">Victory</a></li>
+                <li><a href="https://topheman.github.io/d3-react-experiments/devtools/#/victory/transition-multi-line-chart" target="_blank">Victory</a></li>
+                <li><a href="https://topheman.github.io/d3-react-experiments/devtools/#/recharts/transition-multi-line-chart" target="_blank">Recharts</a> <small>(bonus)</small></li>
               </ul>
             </li>
           </ul>
