@@ -11,7 +11,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, "dist"),
     filename: "bundle.js",
-    publicPath: "/dist/"
+    publicPath: "./dist/" // /dist/ in development
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -35,7 +35,19 @@ module.exports = {
       loader: "babel-loader"
     }, {
       test: /\.css$/,
-      loader: "style-loader!css-loader"
+      rules: [
+        {
+          test: /\.css$/,
+          use: [ 'style-loader', 'css-loader' ]
+        },
+        {
+          test: /\.(png|jpg|gif|svg)$/,
+          loader: 'url-loader',
+          options: {
+            limit: 10000
+          }
+        }
+      ]
     }, {
       test: /\.(png|jpg|gif)$/,
       loader: "url-loader?limit=8192"

@@ -13,7 +13,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, "dist"),
     filename: "bundle.js",
-    publicPath: "/dist/"
+    publicPath: "/dist/" // ./dist/ in production
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
@@ -47,7 +47,19 @@ module.exports = {
       include: __dirname
     }, {
       test: /\.css$/,
-      loaders: ["style-loader", "raw-loader"],
+      rules: [
+        {
+          test: /\.css$/,
+          use: [ 'style-loader', 'css-loader' ]
+        },
+        {
+          test: /\.(png|jpg|gif|svg)$/,
+          loader: 'url-loader',
+          options: {
+            limit: 10000
+          }
+        }
+      ],
       include: __dirname
     }, {
       test: /\.svg$/,

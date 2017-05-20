@@ -1,0 +1,24 @@
+const data = [150, 230, 180, 90];
+
+const svg = d3.select("#chart")
+  .append("svg")
+  .attr("width", 500)
+  .attr("height", 500);
+
+svg.selectAll(".bar")
+  .data(data)
+  .enter()
+  .append("rect")
+  .attr('fill', 'blue')
+  .attr('width', d => d)
+  .attr('height', 40)
+  .attr('x', '10')
+  .attr('y', (d, i) => i * 50 + 10)
+  .on('mouseover', function() {
+    d3.select(this).attr('fill', 'red')
+  })
+  .on('mouseout', function() {
+    d3.select(this).attr('fill', 'blue')
+  });
+
+// https://jsbin.com/xiyibocuzo/edit?js,output
