@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "del-cli": "^1.0.0"
+  }
+}

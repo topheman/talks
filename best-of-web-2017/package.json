@@ -1,11 +1,11 @@
 {
-  "name": "spectacle-boilerplate",
-  "version": "1.0.1",
-  "description": "ReactJS Powered Presentation Framework",
+  "name": "best-of-web-2017-mixing-react-d3",
+  "version": "1.0.0",
+  "description": "Best of Web 2017 - Presenting Mixing React and D3",
   "main": "lib/index.js",
   "scripts": {
     "clean": "rimraf dist",
-    "build": "cross-env NODE_ENV=production webpack --config webpack.config.production.js",
+    "build": "del dist && cross-env NODE_ENV=production webpack --config webpack.config.production.js",
     "lint": "eslint --ext .js,.jsx .",
     "deploy": "npm run clean & npm run build && surge -p .",
     "start": "cross-env NODE_ENV=development node server.js"
@@ -39,6 +39,7 @@
     "babel-runtime": "^6.18.0",
     "cross-env": "^1.0.7",
     "css-loader": "^0.28.1",
+    "del-cli": "^1.0.0",
     "eslint": "^3.8.0",
     "eslint-config-formidable": "^2.0.1",
     "eslint-plugin-filenames": "^1.1.0",

@@ -38,7 +38,8 @@ export default class StaticMultiLineChart extends React.Component {
     super();
   }
 
-  drawLineChart() {
+  render() {
+
     const { margin, width: widthIncludingMargins, height: heightIncludingMargins, data, minX, maxX, minY, maxY } = this.props;
     console.log('margin', margin, minX, maxX, minY, maxY, 'data', data);
 
@@ -96,11 +97,7 @@ export default class StaticMultiLineChart extends React.Component {
     svg.append('g')
       .call(axisLeft(y));
 
-    return rootNode;
-  }
-
-  render() {
-    return this.drawLineChart().toReact();
+    return rootNode.toReact();
   }
 
 }

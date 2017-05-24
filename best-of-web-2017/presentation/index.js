@@ -15,7 +15,8 @@ import {
   Slide,
   Text,
   Image,
-  CodePane
+  CodePane,
+  Appear
 } from "spectacle";
 import CodeSlide from 'spectacle-code-slide';
 
@@ -31,12 +32,9 @@ require("spectacle/lib/themes/default/index.css");
 
 
 const images = {
-  city: require("../assets/city.jpg"),
-  kat: require("../assets/kat.png"),
-  logo: require("../assets/formidable-logo.svg"),
-  markdown: require("../assets/markdown.png"),
   reactLogo: require("../assets/react-logo.png"),
-  d3Logo: require("../assets/d3-logo.png")
+  d3Logo: require("../assets/d3-logo.png"),
+  youShallNotPass: require("../assets/you-shall-not-mutate-my-dom.gif")
 };
 
 preloader(images);
@@ -95,38 +93,44 @@ export default class Presentation extends React.Component {
           <p>
             by <a href="http://labs.topheman.com">Christophe Rosset</a> / <a href="https://twitter.com/topheman">@topheman</a>
           </p>
-          <p><a href="http://bestofweb.paris/" title="Best Of Web">Best Of Web 2017</a></p>
+          <p><a href="http://bestofweb.paris/" title="Best Of Web">Best Of Web - 9 juin 2017</a></p>
         </Slide>
         <Slide transition={['zoom', 'fade']}>
           <Image src={images.reactLogo} width="300px"/>
           <Image src={images.d3Logo} width="300px"/>
         </Slide>
         <Slide>
-          <Heading size={3}> Back to basics</Heading>
+          <Heading size={3}>🔎 Back to basics</Heading>
         </Slide>
         <Slide>
-          <Heading size={5}>React basics</Heading>
-          <p>Any modification to <code>state</code> / <code>props</code> / <code>context</code><br/>will trigger a re-render to <a href="https://facebook.github.io/react/docs/optimizing-performance.html" target="_blank">VirtualDOM</a></p>
-          <p>Changes will be flushed to the DOM</p>
-          <p style={{color: 'red'}}>No DOM direct access</p>
+          <Heading size={5}>React basics 👀</Heading>
+          <p style={{color: 'red'}}>No DOM access</p>
+          <p style={{color: 'red'}}>No DOM mutation</p>
+          <p>Virtual DOM</p>
+          <p>Let React do the diffing and apply changes to the DOM</p>
           <p><strike><code>el.appendChild(childNode)</code></strike></p>
           <p><strike><code>el.innerHTML = 'foo'</code></strike></p>
         </Slide>
-        <Slide>
+        {/*<Slide>
           <Heading size={5}>React basics</Heading>
-          <p>Event delegation</p>
-          <p style={{color: 'red'}}>No DOM direct access</p>
+          <p style={{color: 'red'}}>Use React events</p>
+          <p>No need for <code>.addEventListener</code></p>
           <p><code>{`onClick={handler}`}</code><br/>≠<br/><code>onclick="javascript:alert('toto')"</code></p>
-          <p style={{fontSize: '80%'}}><strike><code>el.addEventListener('click', handler, false)</code></strike></p>
-        </Slide>
+        </Slide>*/}
         <Slide>
-          <Heading size={5}>D3 basics</Heading>
+          <Heading size={5}>D3 basics 🔍</Heading>
+          <p>query DOM</p>
+          <p>mutate DOM</p>
+          <p>manage EVENTS</p>
+        </Slide>
+        {/*<Slide>
+          <Heading size={5}>D3 basics 🔍</Heading>
           <CodePane
             lang="js"
             source={require("raw-loader!../assets/code.examples/minimal-d3.example")}/>
           <p><a href="https://jsbin.com/xiyibocuzo/edit?js,output" target="_blank">Demo</a></p>
-        </Slide>
-        <CodeSlide
+        </Slide>*/}
+        {/*<CodeSlide
           lang="js"
           code={require("raw-loader!../assets/code.examples/minimal-d3.example")}
           ranges={[
@@ -135,13 +139,14 @@ export default class Presentation extends React.Component {
             {loc: [7, 8]},
             {loc: [3, 6]},
             {loc: [8, 16]},
-            {loc: [16, 22]}
+            {loc: [16, 22]},
+            {loc: [23, 24]}
           ]}>
-        </CodeSlide>
+        </CodeSlide>*/}
         <Slide transition={['zoom', 'fade']}>
           <Image src={images.reactLogo} width="250px"/>
           <div style={{display: 'inline-block'}}>
-            <span style={{position: 'relative', top: '-120px', fontSize: '250%', padding: '20px'}}>👉 DOM 👈</span>
+            <span style={{position: 'relative', top: '-120px', fontSize: '250%', padding: '20px'}}>🚫 DOM 👈</span>
           </div>
           <Image src={images.d3Logo} width="250px"/>
         </Slide>
@@ -155,16 +160,16 @@ export default class Presentation extends React.Component {
           <p><small><a href="https://www.reddit.com/r/reactjs/comments/2riuwa/mutating_reacts_dom/" target="_blank">Mutating React's DOM</a></small></p>
         </Slide>
         <Slide>
-          <Heading size={5}>Mixing d3 &amp; React</Heading>
-          <p>Presenting 3 different approaches to mix those two libraries.</p>
-          <p><a href="https://topheman.github.io/d3-react-experiments/devtools/#/d3/transition-multi-line-chart" target="_blank">DEMO</a></p>
+          <Image src={images.youShallNotPass} width="800px" />
         </Slide>
         <Slide>
-          <Heading size={5}>1) Vanilla d3 based</Heading>
-          <ul>
-            <li>Pure vanilla d3 code embedded in React component</li>
-            <li>Direct access to embedded DOM node</li>
-          </ul>
+          <Heading size={5}>Mixing d3 &amp; React</Heading>
+          <p>React component accepting data in input<br/>then rendering some chart</p>
+          <Appear><p>Then how to wire the whole thing ?...</p></Appear>
+        </Slide>
+        <Slide>
+          <Heading size={5}>1) Embed Pure d3<br/>inside a React Component</Heading>
+          <p>Direct access to embedded DOM node</p>
           <p>
             <a href="https://topheman.github.io/d3-react-experiments/devtools/#/d3/transition-multi-line-chart" target="_blank">DEMO (React embedding d3)</a>
           </p>
@@ -177,13 +182,14 @@ export default class Presentation extends React.Component {
             {loc: [0, 1]},
             {loc: [12, 13]},
             {loc: [14, 24]},
-            {loc: [4, 9]},
+            {loc: [18, 19]},
+            {loc: [4, 9], title: <span>d3 imports</span>},
             {loc: [6, 7]},
             {loc: [205, 211]},
             {loc: [208, 209]},
             {loc: [114, 123]},
             {loc: [56, 59]},
-            {loc: [98, 102]},
+            {loc: [98, 102], title: <span>run d3 on this.rootNode</span>},
             {loc: [195, 204]},
             {loc: [199, 200]},
             {loc: [202, 203]},
@@ -201,16 +207,8 @@ export default class Presentation extends React.Component {
           ]}>
         </CodeSlide>
         <Slide>
-          <Heading size={5}>Vanilla d3 based ✅</Heading>
-          <ul>
-            <li>Don't mess with d3's root DOM node by rendering the exact same markup</li>
-            <li>Use React's <a href={require('../assets/react-lifecycle-hooks.png')} target="_blank">lifecycle hooks</a>
-              <ul>
-                <li>To ensure props update taken in account</li>
-                <li>For optimization (split data update vs size update)</li>
-              </ul>
-            </li>
-          </ul>
+          <Heading size={5}>1) Embed Pure d3<br/>inside a React Component ✅</Heading>
+          <p style={{fontSize: '130%'}}>Don't mess with d3's root DOM node<br/>by returning the exact same markup<br/>in the render method</p>
           <p><a href="http://dev.topheman.com/d3-react-chart-components/" target="_blank">SEE BLOG POST</a></p>
         </Slide>
         <Slide>
@@ -224,10 +222,11 @@ export default class Presentation extends React.Component {
   return rootNode.toReact();
 }
 `}/>
-          <p>Trick d3 with a <strong>DOM like structure</strong> that renders to React</p>
-          <p>
-            Think of it like <code>jsdom</code> with a <code>.toReact()</code> method<br/>that renders into React elements
-          </p>
+          <ul style={{marginBottom: 0}}>
+            <li>Still use Pure d3 code</li>
+            <li>Don't use <strong>real DOM</strong></li>
+            <li>Provide d3 with a <strong>DOM like structure</strong> that renders to React</li>
+          </ul>
           <p><a href="https://topheman.github.io/d3-react-experiments/devtools/#/d3/react-faux-dom/static-multi-line-chart" target="_blank">DEMO (Using react-faux-dom)</a></p>
         </Slide>
         <CodeSlide
@@ -239,25 +238,20 @@ export default class Presentation extends React.Component {
             {loc: [12, 13]},
             {loc: [4, 8]},
             {loc: [8, 9]},
-            {loc: [101, 104]},
-            {loc: [102, 103]},
             {loc: [40, 41]},
-            {loc: [46, 47]},
-            {loc: [57, 65]},
-            {loc: [66, 75]},
-            {loc: [69, 70]},
-            {loc: [80, 88]},
-            {loc: [89, 97]},
-            {loc: [98, 99]},
-            {loc: [102, 103]}
+            {loc: [47, 48]},
+            {loc: [70, 71]},
+            {loc: [70, 76]},
+            {loc: [99, 100]}
           ]}>
         </CodeSlide>
         <Slide>
           <Heading size={5}>React faux DOM ✅</Heading>
           <ul>
             <li>Keep the same d3 code</li>
-            <li>Generated svg (universal ready)</li>
-            <li>Animations ... 🙁</li>
+            <Appear><li>Generated svg (universal ready)</li></Appear>
+            <Appear><li>Animations ... 🙁</li></Appear>
+            <Appear><li>Necessary step for the next approach</li></Appear>
           </ul>
         </Slide>
         <Slide>
@@ -306,10 +300,11 @@ export default class Presentation extends React.Component {
         <Slide>
           <Heading size={5}>Pure JSX ✅</Heading>
           <ul>
-            <li>Make your own *</li>
-            <li>Use an existing library (like <a href="https://formidable.com/open-source/victory/" target="_blank">Victory</a>)</li>
+            <li>Usual JSX render syntax (declarative syntax)</li>
+            <li>Rendered by React</li>
           </ul>
-          <p style={{fontSize: '75%'}}>* You might end up creating the same kind of components as existing libraries ...</p>
+          <p>Push further, composing pure JSX components ?... 😉</p>
+          <p>Using libraries like <a href="https://formidable.com/open-source/victory/">Victory</a>, <a href="http://recharts.org/">ReCharts</a> or making your own ...</p>
         </Slide>
         <Slide>
           <Heading size={6}>Compose / Reuse Pure JSX Component Charts</Heading>
@@ -341,13 +336,16 @@ export default class Presentation extends React.Component {
             <li>Easier to read (declarative syntax)</li>
             <li>No lifecycle hooks needed</li>
             <li>Can be stateless (functional component)</li>
+            <li><i>Victory</i> - Can be used in both Native and Web</li>
           </ul>
         </Slide>
         <Slide>
+          <p>(BONUS) ⏲</p>
           <Heading size={5}>What about complex charts ?</Heading>
           <p><a href="https://topheman.github.io/d3-react-experiments/devtools/#/victory/count-npm-downloads" target="_blank">DEMO</a></p>
         </Slide>
         <Slide>
+          <p>(BONUS) ⏲</p>
           <Heading size={5}>What about complex charts ?</Heading>
           <ul style={{fontSize: '80%'}}>
             <li>OK for advanced charts</li>
@@ -377,7 +375,11 @@ export default class Presentation extends React.Component {
           </ul>
         </Slide>
         <Slide>
-          <Heading size={4}>Questions ?</Heading>
+          <Heading size={4}>Questions ? 👆</Heading>
+          <div>
+            <Image src={images.reactLogo} width="120px" style={{margin: 40}}/>
+            <Image src={images.d3Logo} width="120px" style={{margin: 40}}/>
+          </div>
         </Slide>
         <Slide>
           <Heading size={5}>Resources</Heading>
@@ -397,8 +399,22 @@ export default class Presentation extends React.Component {
             </li>
           </ul>
         </Slide>
+        <Slide transition={['zoom', 'fade']}>
+          <Image src={images.reactLogo} width="300px"/>
+          <Image src={images.d3Logo} width="300px"/>
+        </Slide>
         <Slide>
-          // TODO final slide - repeat first one
+          <Heading size={3}><a href="https://github.com/topheman/d3-react-experiments" target="_blank" title="d3-react-experiments on github">Mixing React &amp; d3</a></Heading>
+          <br/>
+          <Heading size={5}><a href="https://github.com/topheman/d3-react-experiments" target="_blank" title="d3-react-experiments on github">d3-react-experiments</a></Heading>
+          <div>
+            <Image src={images.reactLogo} width="100px"/>
+            <Image src={images.d3Logo} width="100px"/>
+          </div>
+          <p>
+            by <a href="http://labs.topheman.com">Christophe Rosset</a> / <a href="https://twitter.com/topheman">@topheman</a>
+          </p>
+          <p><a href="http://bestofweb.paris/" title="Best Of Web">Best Of Web - 9 juin 2017</a></p>
         </Slide>
       </Deck>
     );
