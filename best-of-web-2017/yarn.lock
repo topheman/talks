@@ -2627,6 +2627,19 @@ gauge@~2.7.1:
     supports-color "^0.2.0"
     wide-align "^1.1.0"
 
+gauge@~2.7.3:
+  version "2.7.4"
+  resolved "https://registry.yarnpkg.com/gauge/-/gauge-2.7.4.tgz#2c03405c7538c39d7eb37b317022e325fb018bf7"
+  dependencies:
+    aproba "^1.0.3"
+    console-control-strings "^1.0.0"
+    has-unicode "^2.0.0"
+    object-assign "^4.1.0"
+    signal-exit "^3.0.0"
+    string-width "^1.0.1"
+    strip-ansi "^3.0.1"
+    wide-align "^1.1.0"
+
 generate-function@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/generate-function/-/generate-function-2.0.0.tgz#6858fe7c0969b7d4e9093337647ac79f60dfbe74"
@@ -4050,6 +4063,15 @@ npmlog@^4.0.1:
     are-we-there-yet "~1.1.2"
     console-control-strings "~1.1.0"
     gauge "~2.7.1"
+    set-blocking "~2.0.0"
+
+npmlog@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/npmlog/-/npmlog-4.1.0.tgz#dc59bee85f64f00ed424efb2af0783df25d1c0b5"
+  dependencies:
+    are-we-there-yet "~1.1.2"
+    console-control-strings "~1.1.0"
+    gauge "~2.7.3"
     set-blocking "~2.0.0"
 
 num2fraction@^1.2.2:

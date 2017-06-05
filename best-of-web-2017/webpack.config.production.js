@@ -16,7 +16,14 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       "process.env": {
-        "NODE_ENV": JSON.stringify("production")
+        "NODE_ENV": JSON.stringify("production"),
+        'GH_PAGES_URL': (url => {
+          if (url) {
+            log.info('webpack', `GH_PAGES_URL overridden with "${url}"`);
+            return JSON.stringify(url);
+          }
+          return JSON.stringify(null);
+        })(process.env.GH_PAGES_URL)
       }
     }),
     new webpack.optimize.UglifyJsPlugin({

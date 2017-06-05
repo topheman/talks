@@ -19,3 +19,11 @@ Open a browser and hit [http://localhost:3000](http://localhost:3000), and we ar
 Building the dist version of the project is as easy as running `npm run build`
 
 If you want to deploy the slideshow to surge, run `npm run deploy`
+
+## Specifics
+
+There are multiple links to [topheman.github.io/d3-react-experiments](https://topheman.github.io/d3-react-experiments). If you don't have network and serving a local version of both the presentation and demo, you can point the presentation to your local version of the demos like this:
+
+```
+GH_PAGES_URL=http://localhost:5001 npm start
+```

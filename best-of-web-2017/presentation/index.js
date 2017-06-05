@@ -26,14 +26,18 @@ import preloader from "spectacle/lib/utils/preloader";
 // Import theme
 import createTheme from "spectacle/lib/themes/default";
 
+// if you're serving the presentation AND demo in local, you can override the links to the demo like:
+// GH_PAGES_URL=http://localhost:5001 npm start
+const GH_PAGES_URL = process.env.GH_PAGES_URL ? process.env.GH_PAGES_URL : 'https://topheman.github.io/d3-react-experiments';
+
 // Require CSS
 require("normalize.css");
 require("spectacle/lib/themes/default/index.css");
 
-
 const images = {
   reactLogo: require("../assets/react-logo.png"),
   d3Logo: require("../assets/d3-logo.png"),
+  bestOfWeb: require("../assets/bestofweb-logo.png"),
   youShallNotPass: require("../assets/you-shall-not-mutate-my-dom.gif")
 };
 
@@ -69,7 +73,7 @@ const barChartConfig = {
     barColor: 'orange',
     textColor: 'grey'
   },
-  '<BarChart data={[2,8,5,3]} width={600} />': {
+  '<BarChart data={[3,7,8,9,2]} width={600} />': {
     data: [3,7,8,9,2],
     width: 600
   }
@@ -103,13 +107,12 @@ export default class Presentation extends React.Component {
           <Heading size={3}>🔎 Back to basics</Heading>
         </Slide>
         <Slide>
-          <Heading size={5}>React basics 👀</Heading>
+          <Image src={images.reactLogo} width="80px"/>
+          <Heading size={5}> React basics 👀</Heading>
           <p style={{color: 'red'}}>No DOM access</p>
           <p style={{color: 'red'}}>No DOM mutation</p>
-          <p>Virtual DOM</p>
-          <p>Let React do the diffing and apply changes to the DOM</p>
-          <p><strike><code>el.appendChild(childNode)</code></strike></p>
-          <p><strike><code>el.innerHTML = 'foo'</code></strike></p>
+          <p><code>render()</code>: describe your UI</p>
+          <p>React Only Updates What's Necessary</p>
         </Slide>
         {/*<Slide>
           <Heading size={5}>React basics</Heading>
@@ -118,6 +121,7 @@ export default class Presentation extends React.Component {
           <p><code>{`onClick={handler}`}</code><br/>≠<br/><code>onclick="javascript:alert('toto')"</code></p>
         </Slide>*/}
         <Slide>
+          <Image src={images.d3Logo} width="80px"/>
           <Heading size={5}>D3 basics 🔍</Heading>
           <p>query DOM</p>
           <p>mutate DOM</p>
@@ -150,28 +154,26 @@ export default class Presentation extends React.Component {
           </div>
           <Image src={images.d3Logo} width="250px"/>
         </Slide>
-        <Slide>
+        {/* <Slide>
           <Heading size={5}>Not made for each other at first glance</Heading>
-          <List>
-            <ListItem>Immutability vs mutability</ListItem>
-            <ListItem>VirtualDOM vs Direct DOM access</ListItem>
-          </List>
-          <p><a href={require('../assets/reconciliation-error.png')} target="_blank">React reconciliation</a></p>
+          <p><a href={require('../assets/reconciliation-error.png')} target="_blank">React reconciliation (previous React versions)</a> ⚠️</p>
           <p><small><a href="https://www.reddit.com/r/reactjs/comments/2riuwa/mutating_reacts_dom/" target="_blank">Mutating React's DOM</a></small></p>
-        </Slide>
-        <Slide>
+        </Slide> */}
+        {/*<Slide>
           <Image src={images.youShallNotPass} width="800px" />
-        </Slide>
+          <p style={{fontSize: '80%'}}>but now you can 😇 ...</p>
+        </Slide>*/}
         <Slide>
           <Heading size={5}>Mixing d3 &amp; React</Heading>
-          <p>React component accepting data in input<br/>then rendering some chart</p>
-          <Appear><p>Then how to wire the whole thing ?...</p></Appear>
         </Slide>
         <Slide>
           <Heading size={5}>1) Embed Pure d3<br/>inside a React Component</Heading>
-          <p>Direct access to embedded DOM node</p>
+          <ul>
+            <li>React manages component state</li>
+            <li>d3 manages DOM rendering inside the component</li>
+          </ul>
           <p>
-            <a href="https://topheman.github.io/d3-react-experiments/devtools/#/d3/transition-multi-line-chart" target="_blank">DEMO (React embedding d3)</a>
+            <a href={`${GH_PAGES_URL}/devtools/#/d3/transition-multi-line-chart`} target="_blank">DEMO (React embedding d3)</a>
           </p>
         </Slide>
         <CodeSlide
@@ -182,11 +184,16 @@ export default class Presentation extends React.Component {
             {loc: [0, 1]},
             {loc: [12, 13]},
             {loc: [14, 24]},
-            {loc: [18, 19]},
             {loc: [4, 9], title: <span>d3 imports</span>},
             {loc: [6, 7]},
-            {loc: [205, 211]},
-            {loc: [208, 209]},
+            {loc: [205, 215]},
+            {loc: [207, 214]},
+            {loc: [208, 213]},
+            {loc: [209, 212]},
+            {loc: [209, 210]},
+            {loc: [210, 211]},
+            {loc: [211, 212]},
+            {loc: [210, 212]},
             {loc: [114, 123]},
             {loc: [56, 59]},
             {loc: [98, 102], title: <span>run d3 on this.rootNode</span>},
@@ -208,8 +215,14 @@ export default class Presentation extends React.Component {
         </CodeSlide>
         <Slide>
           <Heading size={5}>1) Embed Pure d3<br/>inside a React Component ✅</Heading>
-          <p style={{fontSize: '130%'}}>Don't mess with d3's root DOM node<br/>by returning the exact same markup<br/>in the render method</p>
+          <p>Let d3 handle the rendering</p>
           <p><a href="http://dev.topheman.com/d3-react-chart-components/" target="_blank">SEE BLOG POST</a></p>
+        </Slide>
+        <Slide>
+          <Heading size={5}>1) Embed Pure d3<br/>inside a React Component ✅ ✅</Heading>
+          <p>Avoid messing d3's internal root node</p>
+          <p><a href={require('../assets/reconciliation-error.png')} target="_blank">React reconciliation (previous React versions)</a> ⚠️</p>
+          <p><small><a href="https://www.reddit.com/r/reactjs/comments/2riuwa/mutating_reacts_dom/" target="_blank">Mutating React's DOM</a></small></p>
         </Slide>
         <Slide>
           <Heading size={5}>2) React faux DOM</Heading>
@@ -223,11 +236,11 @@ export default class Presentation extends React.Component {
 }
 `}/>
           <ul style={{marginBottom: 0}}>
-            <li>Still use Pure d3 code</li>
+            <li>Still use <strong>pure d3 code</strong></li>
             <li>Don't use <strong>real DOM</strong></li>
             <li>Provide d3 with a <strong>DOM like structure</strong> that renders to React</li>
           </ul>
-          <p><a href="https://topheman.github.io/d3-react-experiments/devtools/#/d3/react-faux-dom/static-multi-line-chart" target="_blank">DEMO (Using react-faux-dom)</a></p>
+          <p><a href={`${GH_PAGES_URL}/devtools/#/d3/react-faux-dom/static-multi-line-chart`} target="_blank">DEMO (Using react-faux-dom)</a></p>
         </Slide>
         <CodeSlide
           lang="js"
@@ -242,6 +255,9 @@ export default class Presentation extends React.Component {
             {loc: [47, 48]},
             {loc: [70, 71]},
             {loc: [70, 76]},
+            {loc: [77, 80]},
+            {loc: [81, 89]},
+            {loc: [90, 98]},
             {loc: [99, 100]}
           ]}>
         </CodeSlide>
@@ -249,7 +265,7 @@ export default class Presentation extends React.Component {
           <Heading size={5}>React faux DOM ✅</Heading>
           <ul>
             <li>Keep the same d3 code</li>
-            <Appear><li>Generated svg (universal ready)</li></Appear>
+            <Appear><li>Use React to render svg (universal ready)</li></Appear>
             <Appear><li>Animations ... 🙁</li></Appear>
             <Appear><li>Necessary step for the next approach</li></Appear>
           </ul>
@@ -260,6 +276,12 @@ export default class Presentation extends React.Component {
             <li>Computation managed by d3</li>
             <li>Render managed by React</li>
           </ul>
+        </Slide>
+        <Slide>
+          <Heading size={5}>3) Pure JSX</Heading>
+          <div>
+            <BarChart {...barChartConfig[this.state.barChartRef]}/>
+          </div>
           <ul style={{marginTop: 0}}>
             {Object.keys(barChartConfig).map(configKey => (
               <li
@@ -275,9 +297,6 @@ export default class Presentation extends React.Component {
               </li>
             ))}
           </ul>
-          <div>
-            <BarChart {...barChartConfig[this.state.barChartRef]}/>
-          </div>
         </Slide>
         <CodeSlide
           lang="js"
@@ -299,50 +318,55 @@ export default class Presentation extends React.Component {
         </CodeSlide>
         <Slide>
           <Heading size={5}>Pure JSX ✅</Heading>
-          <ul>
-            <li>Usual JSX render syntax (declarative syntax)</li>
-            <li>Rendered by React</li>
-          </ul>
-          <p>Push further, composing pure JSX components ?... 😉</p>
+          <p>Push further, composing / reusing React component charts ?... 😉</p>
           <p>Using libraries like <a href="https://formidable.com/open-source/victory/">Victory</a>, <a href="http://recharts.org/">ReCharts</a> or making your own ...</p>
         </Slide>
         <Slide>
-          <Heading size={6}>Compose / Reuse Pure JSX Component Charts</Heading>
+          <Heading size={6}>Compose / Reuse React Component Charts</Heading>
           <CodePane
-            style={{maxHeight: '500px'}}
+            style={{fontSize: '1.3rem', marginTop: '30px'}}
             lang="js"
-            source={require("raw-loader!../assets/code.examples/victory.TransitionMultiLineChart.example")}/>
-          <p><a href="https://topheman.github.io/d3-react-experiments/devtools/#/victory/transition-multi-line-chart" target="_blank">DEMO</a></p>
+            source={`import { VictoryChart, VictoryAxis, VictoryLine } from 'victory';`}/>
+          <CodePane
+            style={{fontSize: '1.3rem', marginTop: '30px'}}
+            lang="js"
+            source={`import { LineChart, Line, XAxis, YAxis, Tooltip } from 'recharts';`}/>
+          <p><a href={`${GH_PAGES_URL}/devtools/#/victory/transition-multi-line-chart`} target="_blank">DEMO (Victory)</a></p>
+          <p><a href={`${GH_PAGES_URL}/devtools/#/recharts/transition-multi-line-chart`} target="_blank">DEMO (Recharts)</a></p>
         </Slide>
         <CodeSlide
           lang="js"
           code={require("raw-loader!../assets/code.examples/victory.TransitionMultiLineChart.example")}
           ranges={[
-            {loc: [0, 0], title: <span>Compose / Reuse<br/>Pure JSX Component Charts</span>},
+            {loc: [0, 0], title: <span>Compose / Reuse<br/>React Component Charts</span>},
             {loc: [0, 1]},
             {loc: [4, 5], title: <span>Chart components primitives</span>},
             {loc: [8, 10], title: "Functional component"},
             {loc: [9, 10]},
-            {loc: [10, 18]},
+            {loc: [10, 12]},
+            {loc: [15, 18]},
+            {loc: [28, 29]},
             {loc: [33, 39]},
             {loc: [39, 50]},
             {loc: [50, 68]},
-            {loc: [54, 66]}
+            {loc: [52, 53]},
+            {loc: [54, 66]},
+            {loc: [56, 57]}
           ]}>
         </CodeSlide>
         <Slide>
-          <Heading size={6}>Compose / Reuse Pure JSX Component Charts ✅</Heading>
+          <Heading size={6}>Compose / Reuse React Component Charts ✅</Heading>
           <ul>
-            <li>Easier to read (declarative syntax)</li>
-            <li>No lifecycle hooks needed</li>
-            <li>Can be stateless (functional component)</li>
-            <li><i>Victory</i> - Can be used in both Native and Web</li>
+            <li>Easy to read (JSX declarative syntax)</li>
+            <li>Easy to reuse</li>
+            <li>Multiple components available in existing libraries</li>
           </ul>
+          <p style={{fontSize: '90%'}}><i>Victory</i> - Can be used in both Native and Web</p>
         </Slide>
         <Slide>
           <p>(BONUS) ⏲</p>
           <Heading size={5}>What about complex charts ?</Heading>
-          <p><a href="https://topheman.github.io/d3-react-experiments/devtools/#/victory/count-npm-downloads" target="_blank">DEMO</a></p>
+          <p><a href={`${GH_PAGES_URL}/devtools/#/victory/count-npm-downloads`} target="_blank">DEMO</a></p>
         </Slide>
         <Slide>
           <p>(BONUS) ⏲</p>
@@ -358,21 +382,25 @@ export default class Presentation extends React.Component {
           <ul>
             <li>Embed vanilla d3 code inside React <component></component>
               <ul>
-                <li><a href="https://topheman.github.io/d3-react-experiments/devtools/#/d3/transition-multi-line-chart" target="_blank">d3 embedded</a></li>
+                <li><a href={`${GH_PAGES_URL}/devtools/#/d3/transition-multi-line-chart`} target="_blank">d3 embedded</a></li>
               </ul>
             </li>
             <li>Provide a DOM like structure to d3 that renders to React
               <ul>
-                <li><a href="https://topheman.github.io/d3-react-experiments/devtools/#/d3/react-faux-dom/static-multi-line-chart" target="_blank">react-faux-dom</a></li>
+                <li><a href={`${GH_PAGES_URL}/devtools/#/d3/react-faux-dom/static-multi-line-chart`} target="_blank">react-faux-dom</a></li>
               </ul>
             </li>
             <li>Pure JSX components
               <ul>
-                <li><a href="https://topheman.github.io/d3-react-experiments/devtools/#/victory/transition-multi-line-chart" target="_blank">Victory</a></li>
-                <li><a href="https://topheman.github.io/d3-react-experiments/devtools/#/recharts/transition-multi-line-chart" target="_blank">Recharts</a> <small>(bonus)</small></li>
+                <li><a href={`${GH_PAGES_URL}/devtools/#/victory/transition-multi-line-chart`} target="_blank">Victory</a></li>
+                <li><a href={`${GH_PAGES_URL}/devtools/#/recharts/transition-multi-line-chart`} target="_blank">Recharts</a> <small>(bonus)</small></li>
               </ul>
             </li>
           </ul>
+        </Slide>
+        <Slide>
+          <Heading size={4} style={{marginTop: -100}}>MERCI</Heading>
+          <Image src={images.bestOfWeb} width="200px" className="fade-in"/>
         </Slide>
         <Slide>
           <Heading size={4}>Questions ? 👆</Heading>

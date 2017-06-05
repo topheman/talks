@@ -14,6 +14,21 @@ ul ul {
   margin-left: 40px;
 }
 
+@keyframes animateLogo {
+  0%   { width:10px; }
+  30%   { width:10px; }
+  85%  { width:300px; }
+  100%  { width:200px; }
+}
+.fade-in {
+  position: absolute;
+  left:0;
+  right:0;
+  margin-left:auto;
+  margin-right:auto;
+  animation: animateLogo 0.7s ease-out;
+}
+
 /** github logo from my other sites**/
 /** networks header */
 .site-networks {

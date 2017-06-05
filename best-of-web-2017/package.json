@@ -16,6 +16,7 @@
     "d3-array": "^1.2.0",
     "d3-scale": "^1.0.6",
     "normalize.css": "3.0.3",
+    "npmlog": "^4.1.0",
     "react": "15.4.2",
     "react-dom": "15.4.2",
     "spectacle": "^2.0.0",

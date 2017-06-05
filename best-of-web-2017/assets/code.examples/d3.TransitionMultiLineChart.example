@@ -206,7 +206,11 @@ export default class TransitionMultiLineChart extends React.Component {
   render() {
     console.log('render');
     return (
-      <svg ref={(node) => this.rootNode = select(node)}></svg>
+      <svg
+        ref={(node) => {
+          const d3WrappedNode = select(node);
+          this.rootNode = d3WrappedNode;
+      }}/>
     );
   }
 
