@@ -185,7 +185,10 @@ export default class Presentation extends React.Component {
             {loc: [12, 13]},
             {loc: [14, 24]},
             {loc: [4, 9], title: <span>d3 imports</span>},
-            {loc: [6, 7]},
+            {loc: [6, 7], title: <pre style={{fontSize: '40%', textAlign: 'left'}}><code>{`select(node)
+  .attr('width', 400)
+  .style('color', 'red');
+`}</code></pre>},
             {loc: [205, 215]},
             {loc: [207, 214]},
             {loc: [208, 213]},
@@ -215,7 +218,10 @@ export default class Presentation extends React.Component {
         </CodeSlide>
         <Slide>
           <Heading size={5}>1) Embed Pure d3<br/>inside a React Component ✅</Heading>
-          <p>Let d3 handle the rendering</p>
+          <CodePane
+            style={{fontSize: '18px'}}
+            lang="js"
+            source={require("raw-loader!../assets/code.examples/react-d3-wrapper.example")}/>
           <p><a href="http://dev.topheman.com/d3-react-chart-components/" target="_blank">SEE BLOG POST</a></p>
         </Slide>
         <Slide>
@@ -235,11 +241,35 @@ export default class Presentation extends React.Component {
   return rootNode.toReact();
 }
 `}/>
-          <ul style={{marginBottom: 0}}>
-            <li>Still use <strong>pure d3 code</strong></li>
-            <li>Don't use <strong>real DOM</strong></li>
-            <li>Provide d3 with a <strong>DOM like structure</strong> that renders to React</li>
-          </ul>
+          <p>Still use <strong>pure d3 code</strong></p>
+        </Slide>
+        <Slide>
+          <Heading size={5}>2) React faux DOM</Heading>
+          <CodePane
+            style={{fontSize: '18px'}}
+            lang="js"
+            source={`render() {
+  const rootNode = ReactFauxDOM.createElement('svg');
+  // ... some d3-like code
+  return rootNode.toReact();
+}
+`}/>
+          <p>Don't use <strong>real DOM</strong></p>
+          <p>Provide d3 with a <strong>DOM like structure</strong> that renders to React</p>
+          <p style={{fontSize: '90%'}}><code>.appendChild()</code> <code>.setAttribute()</code> <code>.addEventListener()</code> ...</p>
+          <p><code>.toReact()</code></p>
+        </Slide>
+        <Slide>
+          <Heading size={5}>2) React faux DOM</Heading>
+          <CodePane
+            style={{fontSize: '18px'}}
+            lang="js"
+            source={`render() {
+  const rootNode = ReactFauxDOM.createElement('svg');
+  // ... some d3-like code
+  return rootNode.toReact();
+}
+`}/>
           <p><a href={`${GH_PAGES_URL}/devtools/#/d3/react-faux-dom/static-multi-line-chart`} target="_blank">DEMO (Using react-faux-dom)</a></p>
         </Slide>
         <CodeSlide
@@ -320,6 +350,7 @@ export default class Presentation extends React.Component {
           <Heading size={5}>Pure JSX ✅</Heading>
           <p>Push further, composing / reusing React component charts ?... 😉</p>
           <p>Using libraries like <a href="https://formidable.com/open-source/victory/">Victory</a>, <a href="http://recharts.org/">ReCharts</a> or making your own ...</p>
+          <p>👉</p>
         </Slide>
         <Slide>
           <Heading size={6}>Compose / Reuse React Component Charts</Heading>
