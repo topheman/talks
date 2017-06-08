@@ -103,7 +103,7 @@ export default class Presentation extends React.Component {
           <Image src={images.reactLogo} width="300px"/>
           <Image src={images.d3Logo} width="300px"/>
         </Slide>
-        <Slide>
+        {/*<Slide>
           <Heading size={3}>🔎 Back to basics</Heading>
         </Slide>
         <Slide>
@@ -113,20 +113,20 @@ export default class Presentation extends React.Component {
           <p style={{color: 'red'}}>No DOM mutation</p>
           <p><code>render()</code>: describe your UI</p>
           <p>React Only Updates What's Necessary</p>
-        </Slide>
+        </Slide>*/}
         {/*<Slide>
           <Heading size={5}>React basics</Heading>
           <p style={{color: 'red'}}>Use React events</p>
           <p>No need for <code>.addEventListener</code></p>
           <p><code>{`onClick={handler}`}</code><br/>≠<br/><code>onclick="javascript:alert('toto')"</code></p>
         </Slide>*/}
-        <Slide>
+        {/*<Slide>
           <Image src={images.d3Logo} width="80px"/>
           <Heading size={5}>D3 basics 🔍</Heading>
           <p>query DOM</p>
           <p>mutate DOM</p>
           <p>manage EVENTS</p>
-        </Slide>
+        </Slide>*/}
         {/*<Slide>
           <Heading size={5}>D3 basics 🔍</Heading>
           <CodePane
@@ -147,13 +147,13 @@ export default class Presentation extends React.Component {
             {loc: [23, 24]}
           ]}>
         </CodeSlide>*/}
-        <Slide transition={['zoom', 'fade']}>
+        {/*<Slide transition={['zoom', 'fade']}>
           <Image src={images.reactLogo} width="250px"/>
           <div style={{display: 'inline-block'}}>
             <span style={{position: 'relative', top: '-120px', fontSize: '250%', padding: '20px'}}>🚫 DOM 👈</span>
           </div>
           <Image src={images.d3Logo} width="250px"/>
-        </Slide>
+        </Slide>*/}
         {/* <Slide>
           <Heading size={5}>Not made for each other at first glance</Heading>
           <p><a href={require('../assets/reconciliation-error.png')} target="_blank">React reconciliation (previous React versions)</a> ⚠️</p>
@@ -164,7 +164,9 @@ export default class Presentation extends React.Component {
           <p style={{fontSize: '80%'}}>but now you can 😇 ...</p>
         </Slide>*/}
         <Slide>
-          <Heading size={5}>Mixing d3 &amp; React</Heading>
+          <Heading size={5}>Different approaches</Heading>
+          <p>React Components</p>
+          <p>that generate charts</p>
         </Slide>
         <Slide>
           <Heading size={5}>1) Embed Pure d3<br/>inside a React Component</Heading>
@@ -189,14 +191,13 @@ export default class Presentation extends React.Component {
   .attr('width', 400)
   .style('color', 'red');
 `}</code></pre>},
-            {loc: [205, 215]},
-            {loc: [207, 214]},
-            {loc: [208, 213]},
-            {loc: [209, 212]},
-            {loc: [209, 210]},
+            {loc: [205, 214]},
+            {loc: [207, 213]},
+            {loc: [208, 212]},
+            {loc: [209, 211]},
+            {loc: [209, 210], title: <span style={{fontSize: '50%'}}>When the ref attribute is used on an HTML element,<br/>the ref callback receives the underlying DOM element as its argument.</span>},
             {loc: [210, 211]},
-            {loc: [211, 212]},
-            {loc: [210, 212]},
+            {loc: [209, 211]},
             {loc: [114, 123]},
             {loc: [56, 59]},
             {loc: [98, 102], title: <span>run d3 on this.rootNode</span>},
@@ -242,8 +243,10 @@ export default class Presentation extends React.Component {
 }
 `}/>
           <p>Still use <strong>pure d3 code</strong></p>
+          <p>with <strong>fake DOM</strong> that renders to React</p>
+          <p><a href={`${GH_PAGES_URL}/devtools/#/d3/react-faux-dom/static-multi-line-chart`} target="_blank">DEMO (Using react-faux-dom)</a></p>
         </Slide>
-        <Slide>
+        {/*<Slide>
           <Heading size={5}>2) React faux DOM</Heading>
           <CodePane
             style={{fontSize: '18px'}}
@@ -271,7 +274,7 @@ export default class Presentation extends React.Component {
 }
 `}/>
           <p><a href={`${GH_PAGES_URL}/devtools/#/d3/react-faux-dom/static-multi-line-chart`} target="_blank">DEMO (Using react-faux-dom)</a></p>
-        </Slide>
+        </Slide>*/}
         <CodeSlide
           lang="js"
           code={require("raw-loader!../assets/code.examples/react-faux-dom.StaticMultiLineChart.example")}
@@ -296,7 +299,7 @@ export default class Presentation extends React.Component {
           <ul>
             <li>Keep the same d3 code</li>
             <Appear><li>Use React to render svg (universal ready)</li></Appear>
-            <Appear><li>Animations ... 🙁</li></Appear>
+            <Appear><li>Animations ... 🙁 (tweaks exist though)</li></Appear>
             <Appear><li>Necessary step for the next approach</li></Appear>
           </ul>
         </Slide>
@@ -388,11 +391,22 @@ export default class Presentation extends React.Component {
         <Slide>
           <Heading size={6}>Compose / Reuse React Component Charts ✅</Heading>
           <ul>
-            <li>Easy to read (JSX declarative syntax)</li>
-            <li>Easy to reuse</li>
+            <li>Easy to read / reuse (JSX declarative syntax)</li>
             <li>Multiple components available in existing libraries</li>
           </ul>
           <p style={{fontSize: '90%'}}><i>Victory</i> - Can be used in both Native and Web</p>
+          <p><a href={`${GH_PAGES_URL}/devtools/#/recharts/transition-multi-line-chart`} target="_blank">Recharts</a> <small>(bonus)</small></p>
+        </Slide>
+        <Slide>
+          <Heading size={4} style={{marginTop: -100}}>MERCI</Heading>
+          <Image src={images.bestOfWeb} width="200px" className="fade-in"/>
+        </Slide>
+        <Slide>
+          <Heading size={4}>Questions ? 👆</Heading>
+          <div>
+            <Image src={images.reactLogo} width="120px" style={{margin: 40}}/>
+            <Image src={images.d3Logo} width="120px" style={{margin: 40}}/>
+          </div>
         </Slide>
         <Slide>
           <p>(BONUS) ⏲</p>
@@ -409,6 +423,7 @@ export default class Presentation extends React.Component {
           <p><a href="http://dev.topheman.com/d3-react-components-with-victory-reusability-composability/" target="_blank">SEE BLOG POST</a></p>
         </Slide>
         <Slide>
+          <p>(BONUS) ⏲</p>
           <Heading size={5}>Approaches addressed</Heading>
           <ul>
             <li>Embed vanilla d3 code inside React <component></component>
@@ -428,17 +443,6 @@ export default class Presentation extends React.Component {
               </ul>
             </li>
           </ul>
-        </Slide>
-        <Slide>
-          <Heading size={4} style={{marginTop: -100}}>MERCI</Heading>
-          <Image src={images.bestOfWeb} width="200px" className="fade-in"/>
-        </Slide>
-        <Slide>
-          <Heading size={4}>Questions ? 👆</Heading>
-          <div>
-            <Image src={images.reactLogo} width="120px" style={{margin: 40}}/>
-            <Image src={images.d3Logo} width="120px" style={{margin: 40}}/>
-          </div>
         </Slide>
         <Slide>
           <Heading size={5}>Resources</Heading>
