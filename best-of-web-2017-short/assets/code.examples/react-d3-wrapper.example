@@ -1,0 +1,13 @@
+class ReactD3Chart extends React.Component {
+  componentDidMount() {
+    this.init(); // prepare d3 DOM node
+  }
+  componentDidUpdate() {
+    this.update(); // update d3 DOM node
+  }
+  render() {
+    return (
+      <svg ref={(node) => this.rootNode = select(node)}/>
+    );
+  }
+}
