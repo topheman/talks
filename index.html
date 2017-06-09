@@ -14,9 +14,33 @@
     a {
       color: #900000;
     }
+    /** github ribbon **/
+    #forkongithub, #forkongithub a{
+      -webkit-box-sizing: content-box;
+      -moz-box-sizing: content-box;
+      box-sizing: content-box;
+    }
+    #forkongithub a{
+      background:#000;color:#fff;text-decoration:none;font-family:arial, sans-serif;text-align:center;font-weight:bold;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;
+    }
+    #forkongithub a:hover{
+      background:#900000;color:#fff;
+    }#forkongithub a::before,#forkongithub a::after{
+       content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#fff;
+     }
+    #forkongithub a::after{
+      bottom:1px;top:auto;
+    }@media screen and (min-width:540px){
+      #forkongithub{
+        position:absolute;display:block;top:0;right:0;width:200px;overflow:hidden;height:200px;
+      }
+      #forkongithub a{width:200px;position:absolute;top:60px;right:-60px;transform:rotate(45deg);-webkit-transform:rotate(45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);
+      }
+    }
   </style>
 </head>
 <body>
+<span id="forkongithub"><a href="https://github.com/topheman/talks">Fork me on GitHub</a></span>
 <h2>Christophe Rosset - @topheman / talks</h2>
 <ul>
   <li><a href="./react-es6-redux/" title="React + Redux, a perfect match">React + Redux, a perfect match</a>
@@ -26,9 +50,12 @@
   <li><a href="./d3-react-experiments/" title="Mixing d3 & React">Mixing d3 &amp; React</a>
     - <a href="https://www.meetup.com/fr-FR/ReactJS-Paris/events/235569246/">@reactjs</a> / nov 2016
   </li>
-  <!-- <li><a href="./best-of-web-2017/" title="Mixing React & d3 - Best of Web 2017">Mixing d3 &amp; React</a>
-    - <a href="http://bestofweb.paris/">Best of Web</a> / jun 2017
-  </li> -->
+  <li>Mixing React & d3 - <a href="http://bestofweb.paris/">Best of Web 2017</a> / jun 2017
+    <ul>
+      <li><a href="./best-of-web-2017/" title="Mixing React & d3 - Best of Web 2017">long version</a></li>
+      <li><a href="./best-of-web-2017-short/" title="Mixing React & d3 - Best of Web 2017">short version</a></li>
+    </ul>
+  </li>
 </ul>
 <!-- Google Analytics -->
 <script type="text/javascript">

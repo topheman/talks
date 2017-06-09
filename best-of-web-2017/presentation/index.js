@@ -189,14 +189,13 @@ export default class Presentation extends React.Component {
   .attr('width', 400)
   .style('color', 'red');
 `}</code></pre>},
-            {loc: [205, 215]},
-            {loc: [207, 214]},
-            {loc: [208, 213]},
-            {loc: [209, 212]},
-            {loc: [209, 210]},
+            {loc: [205, 214]},
+            {loc: [207, 213]},
+            {loc: [208, 212]},
+            {loc: [209, 211]},
+            {loc: [209, 210], title: <span style={{fontSize: '50%'}}>When the ref attribute is used on an HTML element,<br/>the ref callback receives the underlying DOM element as its argument.</span>},
             {loc: [210, 211]},
-            {loc: [211, 212]},
-            {loc: [210, 212]},
+            {loc: [209, 211]},
             {loc: [114, 123]},
             {loc: [56, 59]},
             {loc: [98, 102], title: <span>run d3 on this.rootNode</span>},
@@ -242,8 +241,10 @@ export default class Presentation extends React.Component {
 }
 `}/>
           <p>Still use <strong>pure d3 code</strong></p>
+          <p>with <strong>fake DOM</strong> that renders to React</p>
+          <p><a href={`${GH_PAGES_URL}/devtools/#/d3/react-faux-dom/static-multi-line-chart`} target="_blank">DEMO (Using react-faux-dom)</a></p>
         </Slide>
-        <Slide>
+        {/*<Slide>
           <Heading size={5}>2) React faux DOM</Heading>
           <CodePane
             style={{fontSize: '18px'}}
@@ -271,7 +272,7 @@ export default class Presentation extends React.Component {
 }
 `}/>
           <p><a href={`${GH_PAGES_URL}/devtools/#/d3/react-faux-dom/static-multi-line-chart`} target="_blank">DEMO (Using react-faux-dom)</a></p>
-        </Slide>
+        </Slide>*/}
         <CodeSlide
           lang="js"
           code={require("raw-loader!../assets/code.examples/react-faux-dom.StaticMultiLineChart.example")}
@@ -296,7 +297,7 @@ export default class Presentation extends React.Component {
           <ul>
             <li>Keep the same d3 code</li>
             <Appear><li>Use React to render svg (universal ready)</li></Appear>
-            <Appear><li>Animations ... 🙁</li></Appear>
+            <Appear><li>Animations ... 🙁 (tweaks exist though)</li></Appear>
             <Appear><li>Necessary step for the next approach</li></Appear>
           </ul>
         </Slide>
@@ -388,11 +389,11 @@ export default class Presentation extends React.Component {
         <Slide>
           <Heading size={6}>Compose / Reuse React Component Charts ✅</Heading>
           <ul>
-            <li>Easy to read (JSX declarative syntax)</li>
-            <li>Easy to reuse</li>
+            <li>Easy to read / reuse (JSX declarative syntax)</li>
             <li>Multiple components available in existing libraries</li>
           </ul>
           <p style={{fontSize: '90%'}}><i>Victory</i> - Can be used in both Native and Web</p>
+          <p><a href={`${GH_PAGES_URL}/devtools/#/recharts/transition-multi-line-chart`} target="_blank">Recharts</a> <small>(bonus)</small></p>
         </Slide>
         <Slide>
           <p>(BONUS) ⏲</p>
