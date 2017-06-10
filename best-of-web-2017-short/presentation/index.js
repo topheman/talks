@@ -97,7 +97,7 @@ export default class Presentation extends React.Component {
           <p>
             by <a href="http://labs.topheman.com">Christophe Rosset</a> / <a href="https://twitter.com/topheman">@topheman</a>
           </p>
-          <p><a href="http://bestofweb.paris/" title="Best Of Web">Best Of Web - 9 juin 2017</a></p>
+          <p><a href="http://bestofweb.paris/" title="Best Of Web - bestofweb.paris">Best Of Web - 9 juin 2017 <Image src={images.bestOfWeb} width="75px" style={{verticalAlign: 'middle'}}/></a></p>
         </Slide>
         <Slide transition={['zoom', 'fade']}>
           <Image src={images.reactLogo} width="300px"/>
