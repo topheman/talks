@@ -70,6 +70,18 @@ export default class Presentation extends React.Component {
             <a href="http://labs.topheman.com" target="_blank">Christophe Rosset</a> / <a href="https://twitter.com/topheman" target="_blank">@topheman</a>
           </p>
           <p><a href="https://www.meetup.com/fr-FR/ReactJS-Paris/" title="Meetup ReactJS Paris" target="_blank">ReactJS Paris - 18 avril 2018</a></p>
+          <p>
+            <span role="img" aria-label="TV">
+              📺
+            </span>{" "}
+            <a
+              href="http://dev.topheman.com/pourquoi-realiser-topheman-npm-registry-browser-video-talk/"
+              title="Video du talk"
+              target="_blank"
+            >
+              Voir la vidéo du talk
+            </a>
+          </p>
         </Slide>
         <Slide transition={['zoom', 'fade']}>
           <Image src={images.reactLogo} width="300px"/>
@@ -272,6 +284,18 @@ People blame Redux, React, functional programming, immutability, and many other 
                 <li><a href="http://dev.topheman.com/project-to-help-getting-into-making-react-apps/" target="_blank">A project to help getting into making React apps</a></li>
               </ul>
             </li>
+            <li>
+              <span role="img" aria-label="TV">
+                📺
+              </span>{" "}
+              <a
+                href="http://dev.topheman.com/pourquoi-realiser-topheman-npm-registry-browser-video-talk/"
+                title="Video du talk"
+                target="_blank"
+              >
+                Vidéo du talk
+              </a>
+            </li>
           </ul>
         </Slide>
         <Slide transition={['zoom', 'fade']}>
@@ -288,6 +312,18 @@ People blame Redux, React, functional programming, immutability, and many other 
             <a href="http://labs.topheman.com" target="_blank">Christophe Rosset</a> / <a href="https://twitter.com/topheman" target="_blank">@topheman</a>
           </p>
           <p><a href="https://www.meetup.com/fr-FR/ReactJS-Paris/" title="Meetup ReactJS Paris" target="_blank">ReactJS Paris - 18 avril 2018</a></p>
+          <p>
+            <span role="img" aria-label="TV">
+              📺
+            </span>{" "}
+            <a
+              href="http://dev.topheman.com/pourquoi-realiser-topheman-npm-registry-browser-video-talk/"
+              title="Video du talk"
+              target="_blank"
+            >
+              Voir la vidéo du talk
+            </a>
+          </p>
         </Slide>
       </Deck>
     );
