@@ -5,6 +5,7 @@ import { AppContainer } from "react-hot-loader";
 import Redbox from "redbox-react";
 
 import Presentation from "./presentation";
+import "./topheman.css";
 
 const CustomErrorReporter = ({ error }) => <Redbox error={ error } />;
 
@@ -21,7 +22,8 @@ ReactDOM.render(
 
 if (module.hot) {
   module.hot.accept("./presentation", () => {
-    const NextPresentation = require("./presentation").default;    ReactDOM.render(
+    const NextPresentation = require("./presentation").default;
+    ReactDOM.render(
       <AppContainer errorReporter={CustomErrorReporter}>
         <NextPresentation />
       </AppContainer>,

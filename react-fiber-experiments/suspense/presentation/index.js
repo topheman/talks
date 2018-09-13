@@ -13,6 +13,7 @@ import {
   Slide,
   Text
 } from "spectacle";
+import CodeSlide from "spectacle-code-slide";
 
 // Import theme
 import createTheme from "spectacle/lib/themes/default";
@@ -22,12 +23,11 @@ require("normalize.css");
 
 const theme = createTheme({
   primary: "white",
-  secondary: "#1F2022",
-  tertiary: "#03A9FC",
-  quaternary: "#CECECE"
+  secondary: "black",
+  tertiary: "#900000"
 }, {
-  primary: "Montserrat",
-  secondary: "Helvetica"
+  primary: "Source Sans Pro",
+  secondary: "sans-serif"
 });
 
 export default class Presentation extends React.Component {
@@ -42,6 +42,20 @@ export default class Presentation extends React.Component {
             open the presentation/index.js file to get started
           </Text>
         </Slide>
+        <CodeSlide
+          className="slide-font-size-4"
+          lang="javascript"
+          code={require("raw-loader!../snippets/TwitterButton.snippet")}
+          ranges={[
+            { loc: [0, 0], title: <span>Minimal d3 example</span> },
+            { loc: [2, 3] },
+            { loc: [7, 8] },
+            { loc: [3, 6] },
+            { loc: [8, 16] },
+            { loc: [16, 22] },
+            { loc: [23, 24] }
+          ]}
+        />
         <Slide transition={["fade"]} bgColor="tertiary">
           <Heading size={6} textColor="primary" caps>Typography</Heading>
           <Heading size={1} textColor="secondary">Heading 1</Heading>
