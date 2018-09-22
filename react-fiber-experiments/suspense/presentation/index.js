@@ -67,35 +67,13 @@ export default class Presentation extends React.Component {
           <Heading size={4}><a href="https://github.com/topheman/react-fiber-experiments" target="_blank" title="react-fiber-experiments on github">topheman/react-fiber-experiments</a></Heading>
           <br />
           <Heading size={6}>Goal</Heading>
-          <p>Provide a tool to better understand the benefits of the new features of React fiber (such as React Suspense)</p>
+          <p>Provide a tool to better understand the benefits of the new features of React fiber</p>
         </Slide>
         <Slide>
           <Heading size={3}>React Fiber</Heading>
           <p>A complete rewrite of React core</p>
-          <p>Necessary for Async rendering.</p>
-        </Slide>
-        <Slide>
-          <Heading size={3}>React Fiber features</Heading>
-          <ul>
-            <Appear>
-              <li>Already available:
-                <ul>
-                  <li><code>{"<Fragment />"}</code></li>
-                  <li><code>ReactDOM.createPortal(child, container)</code></li>
-                  <li>Error boundaries: <code style={{ fontSize: "0.7em" }}>componentDidCatch(error, info)</code></li>
-                  <li>...</li>
-                </ul>
-              </li>
-            </Appear>
-            <Appear>
-              <li>In development:
-                <ul>
-                  <li><strong>Suspense</strong></li>
-                  <li>Time Slicing</li>
-                </ul>
-              </li>
-            </Appear>
-          </ul>
+          <p>Shipped in React v16 (Fragments, Portals, ErrorBoundaries ...)</p>
+          <p>Necessary for Async rendering (Suspense, Time Slicing)</p>
         </Slide>
         <Slide>
           <Heading size={4}>How to test Suspense right now ?</Heading>
@@ -106,44 +84,9 @@ export default class Presentation extends React.Component {
           <p>You will need to <a href="https://github.com/topheman/react-fiber-experiments/tree/master/react-modules#readme" target="_blank">make your own custom build of React</a>.</p>
         </Slide>
         <Slide>
-          <a href="https://twitter.com/acdlite/status/991503599246098432" target="_blank">
-            <img src={require("../assets/twitter.com_acdlite_status_991503599246098432.png")} style={{ maxWidth: 500 }}/>
-          </a>
-        </Slide>
-        <Slide>
           <p><Heading size={4}>Routing</Heading></p>
           <p>Transition and Spinners</p>
-          <div>
-            <Image src={require("../assets/spinner.gif")} style={{ marginTop: 30 }}/>
-          </div>
-        </Slide>
-        <Slide>
-          <Heading size={5}>Frontend Routers</Heading>
-          <br />
-          <CodePane
-            style={{fontSize: "2rem"}}
-            lang="javascript"
-            source={require("!raw-loader!../snippets/BasicRouterOnEnter.js")}
-          />
-          <p>Transition will block until promise is resolved.</p>
-        </Slide>
-        <Slide>
-          <Heading size={5}>React Router v1, 2, 3</Heading>
-          <br />
-          <CodePane
-            style={{fontSize: "2rem"}}
-            lang="javascript"
-            source={require("!raw-loader!../snippets/ReactRouterOnEnter.js")}
-          />
-          <p>If callback is defined, transition will block until callback is called.</p>
-        </Slide>
-        <Slide>
-          <p><a href="https://react-fiber-experiments.surge.sh/suspense/async-rendering/delayMs/20000">DEMO</a></p>
-          <p>Wait for data</p>
-        </Slide>
-        <Slide>
           <p><a href="https://react-fiber-experiments.surge.sh/suspense/regular-rendering">DEMO</a></p>
-          <p>Show spinners</p>
           <div>
             <Image src={require("../assets/spinner.gif")} style={{ marginTop: 30 }}/>
           </div>
@@ -180,33 +123,9 @@ export default class Presentation extends React.Component {
         />
         <Slide>
           <ul>
-            <li>Data fetching hoisted at router level</li>
             <li>Loading states all over the place</li>
+            <li>Spinners flashing on fast connexions</li>
           </ul>
-        </Slide>
-        <Slide>
-          <Heading size={5}>Route transitioning</Heading>
-          <table style={{ width: "30vw", margin: "0 auto", borderSpacing: 20 }}>
-            <thead>
-              <tr>
-                <td>Strategy</td>
-                <td>Fast</td>
-                <td>Slow</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Wait</td>
-                <td>😃</td>
-                <td>🙁</td>
-              </tr>
-              <tr>
-                <td>Spin</td>
-                <td>🙁</td>
-                <td>😃</td>
-              </tr>
-            </tbody>
-          </table>
         </Slide>
         <Slide>
           <Heading size={5}>With Suspense</Heading>
@@ -231,9 +150,6 @@ export default class Presentation extends React.Component {
             { loc: [26, 27] },
             { loc: [29, 32] },
             { loc: [30, 31] },
-            { loc: [69, 76] },
-            { loc: [71, 74] },
-            { loc: [72, 73] },
             { loc: [33, 53] },
             { loc: [35, 36], title: "Stop render / throw promise" },
             { loc: [38, 42] },
@@ -243,6 +159,9 @@ export default class Presentation extends React.Component {
             { loc: [57, 65] },
             { loc: [58, 59], title: "Stop render / throw promise" },
             { loc: [60, 61] },
+            { loc: [69, 76] },
+            { loc: [71, 74] },
+            { loc: [72, 73] },
             { loc: [33, 53] },
             { loc: [34, 36] },
             { loc: [34, 35], title: "Avoid waterfall" }
@@ -253,6 +172,7 @@ export default class Presentation extends React.Component {
             <li>Data dependencies move down where data is rendered</li>
             <li>Parent component is in control of the Placeholder behavior</li>
             <li>No more dealing with loading states</li>
+            <li>Cache for free</li>
           </ul>
         </Slide>
         <Slide>
@@ -279,9 +199,9 @@ export default class Presentation extends React.Component {
         <Slide>
           <Heading size={5}>@reach/router</Heading>
           <p>Suspense is not only a router concern</p>
-          <p>Though suspense aware routers can leverage</p>
+          <p>Though suspense aware routers can really leverage its power</p>
           <ul>
-            <li>Call history.replace while suspending<br />(to avoid intermediate partially loaded screens)</li>
+            <li>history.replace while suspending</li>
             <li>Scroll management / Focus can rely on cache</li>
           </ul>
         </Slide>
@@ -298,6 +218,7 @@ export default class Presentation extends React.Component {
           <br />
           <Heading size={6}><a href="https://github.com/topheman/react-fiber-experiments" target="_blank" title="react-fiber-experiments on github">topheman/react-fiber-experiments</a></Heading>
           <p>Test more features ...</p>
+          <p>Try it 😉</p>
         </Slide>
       </Deck>
     );
