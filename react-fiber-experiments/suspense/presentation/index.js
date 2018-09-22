@@ -177,7 +177,7 @@ export default class Presentation extends React.Component {
         </Slide>
         <Slide>
           <Heading size={4}>Playing with Placeholders</Heading>
-          <p><a href="https://react-fiber-experiments.surge.sh/suspense/simple">DEMO</a></p>
+          <p><a href="https://react-fiber-experiments.surge.sh/suspense/placeholder">DEMO</a></p>
         </Slide>
         <CodeSlide
           className="slide-font-size-4"
@@ -218,7 +218,8 @@ export default class Presentation extends React.Component {
           <br />
           <Heading size={6}><a href="https://github.com/topheman/react-fiber-experiments" target="_blank" title="react-fiber-experiments on github">topheman/react-fiber-experiments</a></Heading>
           <p>Test more features ...</p>
-          <p>Try it 😉</p>
+          <p>Try it 😉 👇</p>
+          <p><a href="https://react-fiber-experiments.surge.sh/" title="try the demo">https://react-fiber-experiments.surge.sh</a></p>
         </Slide>
       </Deck>
     );
