@@ -52,7 +52,7 @@ export default class Presentation extends React.Component {
         <Slide>
           <Heading size={3}><a href="https://github.com/topheman/react-fiber-experiments" target="_blank" title="react-fiber-experiments on github">React Suspense</a></Heading>
           <div>
-            <Image src={require("../assets/spinner.gif")} style={{ marginTop: 30 }}/>
+            <Image src={`.${require("../assets/spinner.gif")}`} style={{ marginTop: 30 }}/>
           </div>
           <br/>
           <Heading size={5}><a href="https://github.com/topheman/react-fiber-experiments" target="_blank" title="react-fiber-experiments on github">react-fiber-experiments</a></Heading>
@@ -88,7 +88,7 @@ export default class Presentation extends React.Component {
           <p>Transition and Spinners</p>
           <p><a href="https://react-fiber-experiments.surge.sh/suspense/regular-rendering">DEMO</a></p>
           <div>
-            <Image src={require("../assets/spinner.gif")} style={{ marginTop: 30 }}/>
+            <Image src={`.${require("../assets/spinner.gif")}`} style={{ marginTop: 30 }}/>
           </div>
         </Slide>
         <CodeSlide
