@@ -1,7 +1,7 @@
 import React, { Placeholder } from "react";
 import PropTypes from "prop-types";
 import { Link, navigate } from "@reach/router";
-import { createResource } from "simple-cache-provider";
+import { createResource } from "react-cache";
 import { Slider } from "@material-ui/lab";
 
 import { cache } from "../cache";
