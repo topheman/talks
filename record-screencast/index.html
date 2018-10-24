@@ -65,228 +65,105 @@
 				</section>
 
 				<section>
-					<h2>Quick demo</h2>
-					<p>
-						<a href="https://topheman.github.io/react-es6-redux/#" target="_blank">topheman.github.io/react-es6-redux</a>
-					</p>
-				</section>
-
-				<!-- Example of nested vertical slides -->
-				<section>
-					<section>
-						<h2>Project Genesis</h2>
-						<br>
-						<a href="#" class="navigate-down">
-							<img width="178" height="238" data-src="./images/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section>
-						<h2>Original Goal</h2>
-						<ul>
-              <li>try out React & ES6</li>
-              <li>try <s>isomorphic</s> universal JavaScript</li>
-            </ul>
-					</section>
-          <section>
-            <h2>Steps</h2>
-            <ul>
-              <li>feb 2015: backend proxy to github (<a href="https://github.com/topheman/topheman-apis-proxy" target="_blank">topheman-apis-proxy</a>)</li>
-              <li class="fragment">march 2015: first front-end version</li>
-              <li class="fragment">april 2015: <a href="https://github.com/topheman/react-es6-isomorphic" target="_blank">first isomorphic version</a></li>
-              <li class="fragment">flux implementation ?...</li>
-              <li class="fragment">oct 2015: upgrade to React v0.14 <small>(mainly react-router v1.0.0-rc)</small></li>
-              <li class="fragment">nov 2015: add Redux support <small>(finally some flux-like implementation)</small></li>
-              <li class="fragment">still in progress ...</li>
-            </ul>
-          </section>
-				</section>
-
-				<section>
-          <section>
-            <h2>Constraints</h2>
-            <p>
-              Even on a side project, <br/>act with the same kind of constraints as on a bigger project
-            </p>
-          </section>
-          <section>
-            <h2>Constraints</h2>
-            <h3>Features</h3>
-            <ul>
-              <li>async calls to external API</li>
-              <li>mobile friendly <small>(bundle weight, http requests ...)</small></li>
-            </ul>
-            <p><small>(~ real life usecase ...)</small></p>
-          </section>
-          <section>
-            <h2>Constraints</h2>
-            <h3>Automation / Build process</h3>
-            <ul>
-              <li>build in <strong>on step</strong> <small>(<code>npm</code> / <code>webpack</code> / <code>gulp</code>)</small></li>
-              <li>build in specific environment <small>(dev / prod / mock / ci ...)</small></li>
-            </ul>
-          </section>
-          <section>
-            <h2>Constraints</h2>
-            <h3>Automation / CI / Tests</h3>
-            <ul>
-              <li>unit tests <small>(<code>mocha</code> / <code>jsdom</code>)</small></li>
-              <li>e2e tests <small>(<code>protractor</code> / <code>jasmine</code>)</small></li>
-              <li><a href="https://travis-ci.org/topheman/react-es6-redux" target="_blank">Travis CI</a></li>
-              <li><a href="https://saucelabs.com/u/react-es6-redux" target="_blank">Sauce Labs</a></li>
-            </ul>
-          </section>
-          <section>
-            <h2>Constraints</h2>
-            <h3>Development Tooling</h3>
-            <ul>
-              <li>ES6 transpilation <small>(<code>Babel</code> + <code>webpack</code>)</small></li>
-              <li class="fragment">CSS preprocessing <small>(<code>SASS</code> + <code>webpack</code>)</small></li>
-              <li class="fragment">Linter <small>(<code>eslint</code> + <code>eslint-config-airbnb</code>)</small></li>
-              <li class="fragment">Sourcemaps <small>(<code>webpack</code> + <code>*</code>)</small></li>
-              <li class="fragment">Hot-reload <small>(<code>webpack</code> + <code>*</code>)</small></li>
-              <li class="fragment">Redux-Devtools</li>
-            </ul>
-          </section>
-          <section>
-            <h2>Constraints</h2>
-            <h3>Documentation</h3>
-            <ul>
-              <li><a href="https://github.com/topheman/react-es6-redux#react-es6-redux" target="_blank">README</a> + <a href="https://github.com/topheman/react-es6-redux/wiki" target="_blank">Wiki</a></li>
-              <li><a href="https://github.com/topheman/react-es6-redux/releases" target="_blank">Clear releases</a> <small>(with version, changelog ...)</small></li>
-              <li><a href="https://topheman.github.io/react-es6-redux/">Online demo</a> <small>(with both production and development version)</small></li>
-            </ul>
-          </section>
-				</section>
-
+          <div>
+            <iframe
+              title="Discover React Suspense"
+              src="https://www.youtube.com/embed/Nj4q2fHulqc"
+              width="640"
+              height="400"
+              frameBorder="0"
+              allowFullScreen="allowfullscreen"
+            ></iframe>
+          </div>
+        </section>
+        
         <section>
-          <h2>Libraries</h2>
           <ul>
-            <li><code>react</code></li>
-            <li><code>redux</code></li>
-            <li>
-              <code>react-router</code> / <code>redux-router</code>
-              <br/><small>(state of the router kept in redux store)</small>
-            </li>
-            <li><strike><code>redux-thunk</code></strike> <small>(invoke async actions - <a href="https://github.com/topheman/react-es6-redux/blob/master/src/redux/middleware/clientMiddleware.js" target="_blank">replaced by a middleware</a>)</small></li>
-            <li><code>redux-devtools</code></li>
-            <li>...</li>
+            <li>Préparation</li>
+            <li>Enregistrement</li>
+            <li>Outils</li>
           </ul>
         </section>
-
+        
         <section>
-          <section>
-            <h2>Dev Workflow</h2>
-            <p>Demo: <a href="https://github.com/topheman/react-es6-redux#setup" target="_blank">Setup / Launch</a></p>
-            <pre>
-  $ git clone https://github.com/topheman/react-es6-redux.git
-  $ cd react-es6-redux
-  $ npm install
-  $ npm run webpack-dev-simple
-            </pre>
-            <p><small>before starting ?...</small> Redux in 20 lines</p>
-            <p>
-              <a href="#" class="navigate-down">
-                <img height="100" data-src="./images/arrow.png" alt="Down arrow">
-              </a>
-            </p>
-          </section>
-          <section>
-            <h2>Redux in 20 lines</h2>
-            <pre><code class="hljs" data-trim contenteditable>import { createStore } from 'redux';
-
-const store = createStore((state = 0, action) => {
-  switch (action.type) {
-    case 'INCREMENT':
-      return state + 1;
-    default:
-      return state;
-  }
-});
-
-store.subscribe(() => console.log(store.getState()));
-
-store.dispatch({type: 'INCREMENT'});
-store.dispatch({type: 'INCREMENT'});
-store.dispatch({type: 'INCREMENT'});
-store.dispatch({type: 'INCREMENT'});
-store.dispatch({type: 'INCREMENT'});
-// outputs 1, 2, 3, 4, 5
-            </code></pre>
-          </section>
-        </section>
-
-        <section>
-          <h2>Demo</h2>
+          <h2>Préparation</h2>
+          <h3>Ecran 🖥</h3>
           <ul>
-            <li>Hot-reload (keeping state)
+            <li>Ranger votre bureau</li>
+            <li>Préparer / ouvrir <strong>toutes</strong> les fenêtres
               <ul>
-                <li>Components</li>
-                <li>Reducers</li>
-              </ul>
-            </li>
-            <li>Redux-Devtools
-              <ul>
-                <li>Time travel</li>
+                <li>Navigateur avec tous les onglets nécessaires ouverts</li>
+                <li>éditeur / IDE</li>
+                <li>terminal</li>
               </ul>
             </li>
           </ul>
         </section>
-
+        
         <section>
-          <h2>Mock Mode</h2>
-          <p><code>npm run webpack-mock</code></p>
-          <p>Used in tests to provide fixtures to http client</p>
-          <p>Homemade, combining:</p>
+          <h2>Préparation</h2>
+          <h3>Webcam 🎥</h3>
           <ul>
-            <li><a href="https://github.com/topheman/react-es6-redux/blob/master/bin/nock/call-nock.js" target="_blank"><code>nock</code></a> <small>(to record http requests)</small></li>
-            <li><a href="https://github.com/topheman/react-es6-redux/blob/master/src/services/httpService/http.mock.js" target="_blank"><code>super-agent-mocker</code></a></li>
+            <li>Lumière 🔦
+              <ul>
+                <li>Fermer les rideaux</li>
+                <li>Lampe dirigée vers le plafond</li>
+              </ul>
+            </li>
+            <li>Cadrage 🖼
+              <ul>
+                <li>Eviter fond trop chargé</li>
+                <li>Ne plus bouger la caméra</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        
+        <section>
+          <h2>Enregistrement</h2>
+          <h3>Prise de vue 🔴</h3>
+          <ul>
+            <li>Regarder un maximum la caméra lors de l'intro</li>
+            <li>Ne pas laisser la souris trainer sur l'écran</li>
+            <li>Découper en plusieurs prises
+              <ul>
+                <li>Savoir d'emblée sur quelle slide commencer / finir</li>
+                <li>Ne pas couper direct l'enregistrement</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        
+        <section>
+          <h2>DEMO 📺</h2>
+        </section>
+        
+        <section>
+          <h2>Outils 🛠</h2>
+          <ul>
+            <li>Quicktime / VLC (prise de vue)</li>
+            <li>iMovie (montage)</li>
+            <li><a href="https://trac.ffmpeg.org/wiki/Encode/YouTube">ffmpeg</a> (compression)</li>
+            <li>Youtube (publication)</li>
+          </ul>
+          <p>Contraintes:</p>
+          <ul>
+            <li>Utiliser au maximum les outils déjà à disposition</li>
+            <li>Perdre le moins de temps en post-production</li>
           </ul>
         </section>
 
         <section>
-          <h2>What I've learned</h2>
-          <ul>
-            <li>Immutability</li>
-            <li>Functional Programming</li>
-            <li>ES6 Syntax</li>
-            <li>Some webpack tricks ...</li>
-          </ul>
-          <p><img src="./images/tweet-dan_abramov.png" height="160" style="border:0px;"/></p>
+          <h2>Merci 🙏</h2>
         </section>
 
         <section>
-          <h4>(bonus)</h4>
-          <h2>Tips & tricks</h2>
-          <ul>
-            <li><a href="http://dev.topheman.com/optimize-your-bundles-weight-with-webpack/" target="_blank">Optimize your bundle’s weight with webpack</a></li>
-            <li><a href="http://dev.topheman.com/make-your-react-production-minified-version-with-webpack/" target="_blank">Make your own React production version with webpack</a></li>
-          </ul>
-        </section>
-
-        <section>
-          <h2>Next</h2>
-          <ul>
-            <li>Improve unit tests <small>(<a href="https://travis-ci.org/topheman/react-es6-redux" target="_blank">Travis CI</a>)</small></li>
-            <li>Switch to <code>react-router-redux</code><br/><small>(previously <code>redux-simple-router</code>)</small></li>
-            <li>Upgrade to Babel 6 <small>(not yet ready)</small></li>
-          </ul>
-        </section>
-
-        <section>
-          <h2>Questions ?</h2>
-        </section>
-
-        <section>
-          <h2>Resources</h2>
+          <h2>Ressources 📚</h2>
           <ul style="font-size: 80%;">
-            <li><a href="https://youtu.be/xsSnOQynTHs" target="_blank">Dan Abramov at React Europe <small>(Redux & React hot loader)</small></a></li>
-            <li><a href="https://egghead.io/series/getting-started-with-redux" target="_blank">Redux in 30 lessons by Dan Abramov on egghead.io</a></li>
-            <li><a href="https://www.youtube.com/watch?v=BMUiFMZr7vk" target="_blank">Functional programming in JS by @mpjme - videos serie</a></li>
+            <li><a href="http://dev.topheman.com/discover-react-suspense/">Discover React Suspense</a></li>
+            <li><a href="https://trac.ffmpeg.org/wiki/Encode/YouTube">How to Encode Videos for YouTube</a></li>
           </ul>
-          <p style="font-size: 80%;"><a href="http://redux.js.org/" target="_blank">redux.js.org</a> - <a href="https://github.com/rackt" target="_blank">github.com/rackt</a></p>
-          <p style="margin-top:2.5em;">Christophe Rosset - @topheman</p>
-          <p><strong><a href="https://github.com/topheman/react-es6-redux" target="_blank" title="Sources on github">topheman/react-es6-redux</a></strong></p>
-          <p><small><a href="http://labs.topheman.com" target="_blank" title="My projects">labs.topheman.com</a></small></p>
+          <p style="margin-top:2.5em;"><a href="http://labs.topheman.com">Christophe Rosset</a> / <a href="https://twitter.com/topheman">@topheman</a></p>
         </section>
 
 			</div>
