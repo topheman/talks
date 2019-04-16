@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Enregistrer un Screencast by topheman</title>
+
+		<meta name="description" content="Enregistrer un Screencast">
+		<meta name="author" content="Christophe Rosset">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/topheman.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <style>
+      html:-webkit-full-screen-ancestor {
+        background-color: white;
+      }
+      code {
+        background-color: #fff3f3;
+      }
+      p.credit {
+        font-size: 0.9rem;
+      }
+    </style>
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<ul class="site-networks">
+			<li class="twitter">
+				<a href="https://twitter.com/topheman" title="@topheman on twitter">
+					<span class="icon"></span>
+					<span class="desc">Twitter</span>
+				</a>
+			</li>
+			<li class="github">
+				<a href="https://github.com/topheman/nextjs-movie-browser" title="topheman on github">
+					<span class="icon"></span>
+					<span class="desc">Github</span>
+				</a>
+			</li>
+		</ul>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+          <img src="./images/nextjs-movie-browser.png" style="border:0px" title="Next.js"/>
+					<p>
+						<a href="http://labs.topheman.com">Christophe Rosset</a> / <a href="https://twitter.com/topheman">@topheman</a>
+					</p>
+          <p><small><a href="https://www.meetup.com/fr-FR/ReactJS-Paris/events/260442406/">ReactJS</a> meetup - avril 2019</small></p>
+				</section>
+
+				<section>
+          <h2>NextJS Movie Browser</h2>
+          <p>A NextJS implementation of the themoviedb.org website</p>
+          <p><a href="https://github.com/topheman/nextjs-movie-browser">topheman/nextjs-movie-browser</a></p>
+        </section>
+
+				<section>
+          <h2>Goal of this talk</h2>
+          <p>Through feedback on actual project:</p>
+          <ul>
+            <li>Expose use cases for SSR</li>
+            <li>NOT to deep dive in implementation</li>
+          </ul>
+        </section>
+        
+        <section>
+          <h2>DEMO 📺</h2>
+        </section>
+				
+        <section>
+          <img src="./images/yeah-but.gif" style="border:0px"/>
+          <p>
+            Looks like a regular SPA ...
+          </p>
+        </section>
+        
+        <section>
+          <ul style="list-style: none; font-size: 5rem;">
+            <li><span style="color: #900000; font-weight: bold;">S</span>erver</li>
+            <li><span style="color: #900000; font-weight: bold;">S</span>ide</li>
+            <li><span style="color: #900000; font-weight: bold;">R</span>endering</li>
+          </ul>
+        </section>
+        
+        <section>
+          <h2>Topics</h2>
+          <ul>
+            <li>Intro to SSR</li>
+            <li class="fragment">CSS-in-JS</li>
+            <li class="fragment">Server-side / Client-side routing</li>
+            <li class="fragment">SEO / Social Media friendly</li>
+          </ul>
+        </section>
+        
+        <section>
+          <h2>SSR</h2>
+          <p>DEMO 📺</p>
+        </section>
+
+        <section>
+          <section data-transition="none">
+            <img src="./images/spa-1.jpg" style="border:0px"/>
+            <p class="credit"><a href="https://www.slideshare.net/PanjamapongSermsawat/lessons-learned-from-using-nextjs-in-production">from Panjamapong Sermsawatsri</a> ⬇️</p>
+          </section>
+          <section data-transition="none">
+            <img src="./images/spa-2.jpg" style="border:0px"/>
+            <p class="credit"><a href="https://www.slideshare.net/PanjamapongSermsawat/lessons-learned-from-using-nextjs-in-production">from Panjamapong Sermsawatsri</a> ⬆️</p>
+          </section>
+        </section>
+
+        <section>
+          <section data-transition="none">
+            <img src="./images/ssr-1.jpg" style="border:0px"/>
+            <p class="credit"><a href="https://www.slideshare.net/PanjamapongSermsawat/lessons-learned-from-using-nextjs-in-production">from Panjamapong Sermsawatsri</a> ⬇️</p>
+          </section>
+          <section data-transition="none">
+            <img src="./images/ssr-2.jpg" style="border:0px"/>
+            <p class="credit"><a href="https://www.slideshare.net/PanjamapongSermsawat/lessons-learned-from-using-nextjs-in-production">from Panjamapong Sermsawatsri</a> ⬆️</p>
+          </section>
+        </section>
+        
+        <section>
+          <a href="./images/ssr-diagram.jpg"><img src="./images/ssr-diagram.jpg" style="border:0px; height: 80vh;"/></a>
+          <p class="credit"><a href="https://medium.com/@atahani/reactjs-ssr-tips-and-tricks-be9edff5b7bb">from Reactjs SSR Tips and Tricks by Ahmad Tahani</a></p>
+        </section>
+        
+        <section>
+          <h2>CSS-in-JS 💅</h2>
+          <p>Why ?</p>
+        </section>
+
+        <section>
+          <section data-transition="none">
+            <img src="./images/ssr-css-fouc-1.jpg" style="border:0px"/>
+            <p class="credit"><a href="https://www.slideshare.net/PanjamapongSermsawat/lessons-learned-from-using-nextjs-in-production">from Panjamapong Sermsawatsri</a> ⬇️</p>
+          </section>
+          <section data-transition="none">
+            <img src="./images/ssr-css-fouc-2.jpg" style="border:0px"/>
+            <p class="credit"><a href="https://www.slideshare.net/PanjamapongSermsawat/lessons-learned-from-using-nextjs-in-production">from Panjamapong Sermsawatsri</a> ⬇️</p>
+          </section>
+          <section data-transition="none">
+            <img src="./images/ssr-css-fouc-3.jpg" style="border:0px"/>
+            <p class="credit"><a href="https://www.slideshare.net/PanjamapongSermsawat/lessons-learned-from-using-nextjs-in-production">from Panjamapong Sermsawatsri</a> ⬇️</p>
+          </section>
+          <section data-transition="none">
+            <img src="./images/ssr-css-fouc-4.jpg" style="border:0px"/>
+            <p class="credit"><a href="https://www.slideshare.net/PanjamapongSermsawat/lessons-learned-from-using-nextjs-in-production">from Panjamapong Sermsawatsri</a> ⬇️</p>
+          </section>
+        </section>
+        
+        <section>
+          <h2>CSS-in-JS 💅</h2>
+          <p>DEMO 📺</p>
+        </section>
+
+        <section>
+          <section data-transition="none">
+            <img src="./images/ssr-css-in-js-1.jpg" style="border:0px"/>
+            <p class="credit"><a href="https://www.slideshare.net/PanjamapongSermsawat/lessons-learned-from-using-nextjs-in-production">from Panjamapong Sermsawatsri</a> ⬇️</p>
+          </section>
+          <section data-transition="none">
+            <img src="./images/ssr-css-in-js-2.jpg" style="border:0px"/>
+            <p class="credit"><a href="https://www.slideshare.net/PanjamapongSermsawat/lessons-learned-from-using-nextjs-in-production">from Panjamapong Sermsawatsri</a> ⬆️</p>
+          </section>
+        </section>
+        
+        <section>
+          <h2>CSS-in-JS</h2>
+          <ul style="font-size: 0.9em;">
+            <li>by default, Next.js provides <code>styled-jsx</code></li>
+            <li>possible to use any CSS-in-JS lib, like <code>styled-components</code></li>
+            <li>Only send <strong>critical CSS</strong>
+              <ul>
+                <li><code>sheet.collectStyles(&lt;App {...props} /&gt;)</code></li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        
+        <section>
+          <h2>Routing</h2>
+          <h3>Server</h3>
+          <ul>
+            <li>By default nothing to setup
+              <ul>
+                <li>Put your top components in <code>./pages</code></li>
+                <li>matches <code>/a</code> to <code>./pages/a.tsx</code></li>
+              </ul>
+            </li>
+            <li>Only load necessary code
+              <ul>
+                <li>code splitting</li>
+                <li>prefetchable</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        
+        <section>
+          <h2>Routing</h2>
+          <h3>Custom Server</h3>
+          <p>Express based</p>
+          <p>Fully customizable</p>
+          <p>Constraints:</p>
+          <ul>
+            <li>Client shouldn't know all the routes ahead of time</li>
+          </ul>
+        </section>
+        
+        <section>
+          <h2>Routing</h2>
+          <h3>Custom Server</h3>
+          <p>"Route masking"</p>
+          <p><strong>Server-side</strong></p>
+          <ul>
+            <li>Url rewriting
+              <ul>
+                <li><code>/movie/11</code> ➡️ <code>/movie?id=11</code></li>
+                <li style="font-size: 0.9em;">render some top level component (page) passing the query</li>
+              </ul>
+            </li>
+          </ul>
+          <p></p>
+        </section>
+        
+        <section>
+          <h2>Routing</h2>
+          <h3>Custom Server</h3>
+          <p>"Route masking"</p>
+          <p><strong>Client-side</strong></p>
+          <pre style="font-size: 0.7em;"><code class="hljs">&lt;Link href="/movie?id=11" as="/movie/11-star-wars" /&gt;</code></pre>
+          <ul>
+            <li><code>href</code>:<ul>
+              <li>path inside <code>./pages</code></li>
+              <li>query to provide to top level component</li>
+            </ul></li>
+            <li><code>as</code>: url to display</li>
+          </ul>
+          <p>Maintains router state via push/replaceState<br/>(or can even be used as an anchor)</p>
+        </section>
+
+        <section>
+          <h2>Routing</h2>
+          <h3>Custom Server</h3>
+          <p>"Route masking"</p>
+          <pre style="font-size: 0.7em;"><code class="hljs">// server side
+server.get('/movie/:id', (req, res) => {
+  return app.render(req, res, '/movie', {
+    id: req.params.id
+  })
+})
+
+// client side
+&lt;Link href="/movie?id=11" as="/movie/11" /&gt;</code></pre>
+        </section>
+        
+        <section>
+          <h2>SEO / Social Media friendly</h2>
+          <p>DEMO 📺</p>
+        </section>
+        
+        <section>
+          <h2>SEO / Social Media friendly</h2>
+          <ul>
+            <li><code>&lt;meta&gt;</code> / <code>&lt;link&gt;</code> tags</li>
+            <li><a href="https://cards-dev.twitter.com/validator" target="_blank">Twitter card validator</a></li>
+          </ul>
+        </section>
+        
+        <section>
+          <h2>Miscellaneous</h2>
+          <ul>
+            <li>Type API with TypeScript
+              <ul>
+                <li><a href="https://jvilk.com/MakeTypes/">MakeTypes</a></li>
+              </ul>
+            </li>
+            <li><a href="https://github.com/zeit/next.js/tree/canary/examples">Many examples available</a></li>
+          </ul>
+          <!-- TODO -->
+        </section>
+        
+        <section>
+          <h2>Tooling 🛠</h2>
+          <ul>
+            <li>Jest / Cypress</li>
+            <li>Tslint / Prettier</li>
+            <li>Travis / Heroku</li>
+          </ul>
+          <p>📝 <a href="https://github.com/topheman/nextjs-movie-browser#readme">README</a></p>
+          <!-- TODO -->
+        </section>
+
+        <section>
+          <h2>Thanks 🙏</h2>
+        </section>
+
+        <section>
+          <h2>Resources 📚</h2>
+          <ul style="font-size: 80%;">
+            <li><a href="https://www.youtube.com/watch?v=evaMpdSiZKk" title="Guillermo Rauch - Next.js: Universal React Made Easy and Simple - React Conf 2017">Next.js: Universal React Made Easy and Simple</a></li>
+            <li><a href="https://www.slideshare.net/PanjamapongSermsawat/lessons-learned-from-using-nextjs-in-production">Lessons Learned from Using Next.js in Production</a></li>
+            <li><a href="https://medium.com/@atahani/reactjs-ssr-tips-and-tricks-be9edff5b7bb">Reactjs SSR Tips and Tricks</a></li>
+          </ul>
+          <p style="margin-top:2.5em;"><a href="http://labs.topheman.com">Christophe Rosset</a> / <a href="https://twitter.com/topheman">@topheman</a></p>
+        </section>
+
+        <section>
+          <h3><a href="https://github.com/topheman/nextjs-movie-browser">topheman/nextjs-movie-browser</a></h3>
+          <p style="margin-top:2.5em;"><a href="http://labs.topheman.com">Christophe Rosset</a> / <a href="https://twitter.com/topheman">@topheman</a></p>
+        </section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-41002835-1']);
+      _gaq.push(['_setDomainName', 'topheman.github.io']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+	</body>
+</html>
