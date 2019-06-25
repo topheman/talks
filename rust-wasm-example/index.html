@@ -123,6 +123,9 @@
         <section>
           <h2>wasm-bindgen</h2>
           <p>Facilitates high-level interactions between wasm modules and JavaScript.</p>
+          <pre><code>
+cargo add wasm-bindgen
+          </code></pre>
         </section>
 
         <section>
@@ -157,6 +160,26 @@ greet("World!");
         </section>
 
         <section>
+          <h2>wasm-bindgen</h2>
+          <h3>More bindings</h3>
+          <ul>
+            <li><a href="https://docs.rs/js-sys">js-sys</a>: Bindings to JavaScript's standard, built-in objects, including their methods and properties</li>
+            <li><a href="https://docs.rs/web-sys">web-sys</a>: Bindings to Raw API bindings for Web APIs</li>
+            <li><a href="https://docs.rs/wasm-bindgen-futures">wasm-bindgen-futures</a>: Converting between JavaScript <code>Promises</code> to Rust <code>Futures</code></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>wasm-pack</h2>
+          <p>A wasm workflow tool</p>
+          <pre><code>
+cargo install wasm-pack
+
+# or use installer https://rustwasm.github.io/wasm-pack/installer/
+          </code></pre>
+        </section>
+
+        <section>
           <h2>wasm-pack</h2>
           <p>Helps you build rust-generated WebAssembly packages that</p>
           <ul>
@@ -176,8 +199,6 @@ greet("World!");
         <section>
           <h2>BASIC DEMO 📺</h2>
           <pre><code>
-cargo install wasm-pack
-
 wasm-pack build --target web
           </code></pre>
           <a href="https://rustwasm.github.io/wasm-pack/book/commands/build.html">wasm-pack build</a>
