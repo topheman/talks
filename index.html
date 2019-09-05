@@ -41,6 +41,16 @@
       margin-top: 8px;
       margin-bottom: 8px;
     }
+    .video-list {
+      list-style: none;
+      padding-left: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+    .video-list li {
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -81,6 +91,7 @@
     - <a href="https://www.meetup.com/fr-FR/ReactJS-Paris/events/226591264/">@reactjs</a> / nov 2015
   </li>
 </ul>
+<ul class="video-list"></ul>
 <script>
   (() => {
     function sortDomList(ul, lis, order) {
@@ -104,6 +115,25 @@
         );
       }
     }, false);
+    const videos = [
+      ["youtube/F3wOfWIFzVc", "Utiliser WebAssembly, dès aujourd'hui"],
+      ["youtube/yy8H4kwnyC8?start=1011", "Découvrir NextJS et le Server Side rendering"],
+      ["youtube/CzToqxwwebc?start=4885", "Enregistrer un screencast - tips and tricks"],
+      ["youtube/Nj4q2fHulqc", "Discover React Suspense (Now Concurrent React) en"],
+      ["youtube/GlBhj1ee1wk", "Découvrir React Suspense (Maintenant Concurrent React) fr"],
+      ["youtube/p6pwaYHA17I", "Pourquoi j'ai fait topheman/npm-registry-browser"],
+      ["youtube/UuqnKH8RobA?list=PLP0qkoIjGNDU4W0Qg6Qf8dniOupWfyElN", "Faire cohabiter React et d3 (Best of Web)"]
+    ]
+    const videoHtml = videos.map(([link, title]) => {
+      const resolvedLink = `https://www.youtube.com/embed/${link.replace("youtube/", "")}`;
+      return `
+        <li>
+          <iframe width="560" height="315" src="${resolvedLink}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <p>${title}</p>
+        </li>
+      `
+    }).join('');
+    document.querySelector('.video-list').innerHTML = videoHtml;
   })()
 </script>
 <!-- Google Analytics -->
