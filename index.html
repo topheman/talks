@@ -1,205 +1,92 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Christophe Rosset - @topheman / talks</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:title" content="Christophe Rosset - @topheman / talks"/>
-  <meta property="og:url" content="https://topheman.github.io/talks/"/>
-  <meta property="og:image" content="https://topheman.github.io/talks/static/caption.jpg"/>
-  <meta property="og:site_name" content="Christophe Rosset - @topheman / talks"/>
-  <meta name="twitter:card" content="summary"/>
-  <meta name="twitter:site" content="@topheman"/>
-  <meta name="twitter:creator" content="@topheman"/>
-  <meta name="twitter:title" content="Christophe Rosset - @topheman / talks"/>
-  <meta name="twitter:url" content="https://topheman.github.io/talks/"/>
-  <meta name="twitter:description" content="A list of my talks at meetups and conferences"/>
-  <meta name="keywords" content="JavaScript, ReactJS, TypeScript, D3JS"/>
-  <meta name="twitter:image" content="https://topheman.github.io/talks/static/caption.jpg"/>
-  <meta name="description" content="A list of my talks at meetups and conferences"/>
-  <style>
-    body{
-      font-family: Arial, Helvetica, sans-serif;
-    }
-    h1, h2, h3 {
-      color: #900000;
-    }
-    a {
-      color: #900000;
-    }
-    /** github ribbon **/
-    #forkongithub, #forkongithub a{
-      -webkit-box-sizing: content-box;
-      -moz-box-sizing: content-box;
-      box-sizing: content-box;
-    }
-    #forkongithub a{
-      background:#000;color:#fff;text-decoration:none;font-family:arial, sans-serif;text-align:center;font-weight:bold;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;
-    }
-    #forkongithub a:hover{
-      background:#900000;color:#fff;
-    }#forkongithub a::before,#forkongithub a::after{
-       content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#fff;
-     }
-    #forkongithub a::after{
-      bottom:1px;top:auto;
-    }@media screen and (min-width:540px){
-      #forkongithub{
-        position:absolute;display:block;top:0;right:0;width:200px;overflow:hidden;height:200px;
-      }
-      #forkongithub a{width:200px;position:absolute;top:60px;right:-60px;transform:rotate(45deg);-webkit-transform:rotate(45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);
-      }
-    }
-    ul li {
-      margin-top: 8px;
-      margin-bottom: 8px;
-    }
-    .video-list {
-      list-style: none;
-      padding-left: 0;
-    }
-    .video-list li {
-      text-align: center;
-    }
-    @media screen and (min-width: 640px) {
-      .video-list {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-      }
-    }
-    @media screen and (max-width: 640px) {
-      .video-container {
-        position: relative;
-        padding-bottom: 56.25%;
-        padding-top: 30px;
-        height: 0;
-        overflow: hidden;
-      }
-      .video-container iframe,
-      .video-container object,
-      .video-container embed {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-      }
-      .video-container p {
-        display: none;
-      }
-    }
-  </style>
-</head>
-<body>
-<span id="forkongithub"><a href="https://github.com/topheman/talks">Fork me on GitHub</a></span>
-<h2>Christophe Rosset - @topheman / talks</h2>
-<p><strong>My talks</strong> | <a href="http://labs.topheman.com/" title="Checkout my projects">My Projects</a></p>
-<p class="sorting">
-  <label><input type="radio" name="sort" value="DESC" checked> Latest first</label>
-  <label><input type="radio" name="sort" value="ASC"> Oldest first</label>
-</p>
-<ul class="talk-list">
-  <li><a href="https://github.com/topheman/snake-pipe-rust" title="🦀 A snake game based on stdin/stdout in rust">🦀 A snake game based on stdin/stdout in rust</a>
-    - <a href="https://mobilizon.fr/events/6cd766c8-fc53-4106-a28a-b2d60fae2cf3">Paris Rust Meetup</a> / mar 2024
-  </li>
-  <li><a href="./rust-wasm-example/" title="Try WebAssembly Now">Try WebAssembly Now</a> - <a href="https://www.meetup.com/fr-FR/Paris-js/events/260336640/">@parisjs</a> / jun 2019
-    <ul>
-      <li><a href="https://www.youtube.com/watch?v=F3wOfWIFzVc&list=PLWhFHBFsRtquZ6hVXVjXmJ-l51ZXuSBtb">VIDEO du talk 🎬</a> (youtube / <small><a href="https://www.dailymotion.com/video/x7bzmjz">dailymotion</a></small>)</li>
-    </ul>
-  </li>
-  <li><a href="./nextjs/" title="A NextJS implementation of the themoviedb.org website">NextJS Movie Browser</a> - <a href="https://www.meetup.com/fr-FR/ReactJS-Paris/events/260442406/">@reactjs</a> / apr 2019 - <a href="https://youtu.be/yy8H4kwnyC8?t=1011">VIDEO du talk 🎬</a></li>
-  <li><a href="./record-screencast/" title="Enregistrer un Screencast">Enregistrer un Screencast</a> - <a href="https://www.meetup.com/fr-FR/Paris-js/events/251642404/">@parisjs</a> / oct 2018 - <a href="https://youtu.be/CzToqxwwebc?t=4885">VIDEO du talk 🎬</a></li>
-  <li>Discover React Suspense with topheman/react-fiber-experiments
-    <ul>
-      <li><a href="./react-fiber-experiments/suspense/">slides of youtube screencast</a> / sept 2018 - <a href="https://www.youtube.com/watch?v=Nj4q2fHulqc">VIDEO of the screencast 🎬</a> (en)</li>
-      <li><a href="./react-fiber-experiments/suspense-meetup-reactjs/">slides of ReactJS meetup</a> - <a href="https://www.meetup.com/fr-FR/ReactJS-Paris/events/255052088/">@reactjs</a> / oct 2018 - <a href="https://www.youtube.com/watch?v=GlBhj1ee1wk">VIDEO du talk 🎬</a> (fr)</li>
-    </ul>
-  </li>
-  <li><a href="./npm-registry-browser/">Pourquoi j'ai fait topheman/npm-registry-browser</a>
-    - <a href="https://www.meetup.com/fr-FR/ReactJS-Paris/events/249261691/">@reactjs</a> / apr 2018 - <a href="http://dev.topheman.com/pourquoi-realiser-topheman-npm-registry-browser-video-talk/">VIDEO du talk 🎬</a>
-  </li>
-  <li>Mixing React & d3 - <a href="http://bestofweb.paris/">Best of Web 2017</a> / jun 2017 - <a href="https://youtu.be/UuqnKH8RobA?list=PLP0qkoIjGNDU4W0Qg6Qf8dniOupWfyElN">VIDEO of the talk 🎬</a>
-    <ul>
-      <li><a href="./best-of-web-2017/" title="Mixing React & d3 - Best of Web 2017">long version</a></li>
-      <li><a href="./best-of-web-2017-short/" title="Mixing React & d3 - Best of Web 2017">short version</a></li>
-    </ul>
-  </li>
-  <li><a href="./d3-react-experiments/" title="Mixing d3 & React">Mixing d3 &amp; React</a>
-    - <a href="https://www.meetup.com/fr-FR/ReactJS-Paris/events/235569246/">@reactjs</a> / nov 2016
-  </li>
-  <li><a href="./react-es6-redux/" title="React + Redux, a perfect match">React + Redux, a perfect match</a>
-    - <a href="https://parisjs.org/meetup/2016-01-27">@parisjs</a> / jan 2016
-    - <a href="https://www.meetup.com/fr-FR/ReactJS-Paris/events/226591264/">@reactjs</a> / nov 2015
-  </li>
-</ul>
-<ul class="video-list"></ul>
-<script>
-  (() => {
-    const videos = [
-      ["youtube/F3wOfWIFzVc", "Utiliser WebAssembly, dès aujourd'hui"],
-      ["youtube/yy8H4kwnyC8?start=1011", "Découvrir NextJS et le Server Side rendering"],
-      ["youtube/CzToqxwwebc?start=4885", "Enregistrer un screencast - tips and tricks"],
-      ["youtube/Nj4q2fHulqc", "Discover React Suspense (Now Concurrent React) en"],
-      ["youtube/GlBhj1ee1wk", "Découvrir React Suspense (Maintenant Concurrent React) fr"],
-      ["youtube/p6pwaYHA17I", "Pourquoi j'ai fait topheman/npm-registry-browser"],
-      ["youtube/UuqnKH8RobA?list=PLP0qkoIjGNDU4W0Qg6Qf8dniOupWfyElN", "Faire cohabiter React et d3 (Best of Web)"]
-    ];
-    function sortDomList(ul, lis, order) {
-      const sortedLis = [...lis].sort(function(a,b) {
-        const result = a > b ? 1 : -1;
-        if (order === "DESC") {
-          return result;
-        }
-        return result;
-      });
-      sortedLis.forEach(li => {
-        ul.appendChild(li);
-      })
-    }
-    function renderVideos() {
-      const videoHtml = videos.map(([link, title]) => {
-      const resolvedLink = `https://www.youtube.com/embed/${link.replace("youtube/", "")}`;
-      return `
-          <li>
-            <div class="video-container">
-              <iframe width="560" height="315" src="${resolvedLink}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="refresh" content="0; url=https://topheman.github.io/me/talks">
+        <!-- social links from https://topheman.github.io/me/ -->
+        <title>Christophe Rosset (topheman) - Talks</title>
+        <meta name="description" content="Talks I gave at conferences and meetups"/>
+        <meta property="og:title" content="Christophe Rosset (topheman) - Developer Portfolio"/>
+        <meta property="og:description" content="Talks I gave at conferences and meetups"/>
+        <meta property="og:url" content="https://topheman.github.io/me/talks"/>
+        <meta property="og:site_name" content="Christophe Rosset (topheman) - Developer Portfolio"/>
+        <meta property="og:image" content="https://topheman.github.io/me/social-media-preview-talks.png"/>
+        <meta property="og:type" content="website"/>
+        <meta name="twitter:card" content="summary_large_image"/>
+        <meta name="twitter:site" content="@topheman"/>
+        <meta name="twitter:creator" content="@topheman"/>
+        <meta name="twitter:title" content="Christophe Rosset (topheman) - Developer Portfolio"/>
+        <meta name="twitter:description" content="Talks I gave at conferences and meetups"/>
+        <meta name="twitter:image" content="https://topheman.github.io/me/social-media-preview-talks.png"/>
+        <style>
+            body{
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            h1,h2,h3 {
+                color: #900000;
+            }
+            .container {
+                margin: 0 auto;
+                width: 80%;
+                max-width: 600px;
+            }
+            p {
+                line-height: 1.5;
+            }
+            @keyframes fadeInOut {
+                0% { opacity: 0; }
+                50% { opacity: 1; }
+                100% { opacity: 0; }
+            }
+            .redirect-message {
+                text-align: center;
+                margin-top: 2em;
+                color: #666;
+                font-style: italic;
+                animation: fadeInOut 2s ease-in-out infinite;
+            }
+            .portfolio-link {
+                display: block;
+                text-align: center;
+                margin-top: 1em;
+                color: #900000;
+                text-decoration: none;
+                font-weight: bold;
+            }
+            .portfolio-link:hover {
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Christophe Rosset</h1>
+            <h2>Software Engineer</h2>
+            <h3>@topheman</h3>
+            <p>
+            Hi, I'm Christophe Rosset, a software engineer living in Paris,
+            France.
+            </p>
+            <p>
+            I help teams manage technical debt and guide developers by sharing
+            development best practices through documentation, workshops, and
+            implementing specific tools.
+            </p>
+            <p>
+            With over 20 years of experience in web development across
+            different technologies, I continue to stay current in my
+            Frontend/JavaScript expertise and more recently in
+            Rust/WebAssembly 🦀 by staying active in the tech community,
+            attending meetups, working on personal projects, and contributing
+            to open source.
+            </p>
+            <div class="redirect-message">
+                You are being redirected to the talks section of my new portfolio...
             </div>
-            <p>${title}</p>
-          </li>
-        `
-      }).join('');
-      document.querySelector('.video-list').innerHTML = videoHtml;
-    }
-    renderVideos();
-    document.querySelector(".sorting").addEventListener("change", e => {
-      if (e.target.value) {
-        sortDomList(
-          document.querySelector(".talk-list"),
-          document.querySelectorAll('.talk-list > li'),
-          e.target.value
-        );
-        sortDomList(
-          document.querySelector(".video-list"),
-          document.querySelectorAll('.video-list > li'),
-          e.target.value
-        );
-      }
-    }, false);
-  })()
-</script>
-<!-- Google Analytics -->
-<script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-41002835-1']);
-  _gaq.push(['_setDomainName', 'topheman.github.io']);
-  _gaq.push(['_setAllowLinker', true]);
-  _gaq.push(['_trackPageview']);
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
-</body>
+            <a href="https://topheman.github.io/me/talks" class="portfolio-link">
+                Click here to go to the talks section of my new portfolio →
+            </a>
+        </div>
+    </body>
 </html>
