@@ -1,0 +1,83 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Find and build projects
+        run: |
+          # Find all directories starting with _ that contain a package.json
+          for project in _*/package.json; do
+            if [ -f "$project" ]; then
+              project_dir=$(dirname "$project")
+              project_name=${project_dir#_}  # Remove leading underscore
+              echo "Building $project_dir -> $project_name"
+
+              # Install dependencies
+              cd "$project_dir"
+              npm ci
+
+              # Build project
+              npm run build
+
+              # Go back to root
+              cd ..
+            fi
+          done
+
+      - name: Cleanup - to avoid deploying source files
+        run: rm -rf ./_*
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Create .nojekyll file
+        run: touch .nojekyll
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+          # Exclude development-related directories and files
+          # Exclude source directories
+          exclude: |
+            .git/**
+            .github/**
+            notes/**
+            **/node_modules/**
+            **/.DS_Store
+            **/*.log
+            **/.env*
+            **/.gitignore
+            _*/**
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
