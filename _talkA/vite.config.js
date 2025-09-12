@@ -5,5 +5,5 @@ export default defineConfig({
     outDir: '../talkA',
     emptyOutDir: true,
   },
-  base: process.env.GITHUB_ACTIONS ? '/talks/talkA/' : '/'
+  base: '/talks/talkA/'
 })
