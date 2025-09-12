@@ -31,27 +31,6 @@ jobs:
           node-version-file: '.nvmrc'
           cache: 'npm'
 
-      - name: Find and build projects
-        run: |
-          # Find all directories starting with _ that contain a package.json
-          for project in _*/package.json; do
-            if [ -f "$project" ]; then
-              project_dir=$(dirname "$project")
-              project_name=${project_dir#_}  # Remove leading underscore
-              echo "Building $project_dir -> $project_name"
-
-              # Install dependencies
-              cd "$project_dir"
-              npm ci
-
-              # Build project
-              npm run build
-
-              # Go back to root
-              cd ..
-            fi
-          done
-
       - name: Cleanup - to avoid deploying source files
         run: rm -rf ./_*
 
