@@ -1,6 +1,3 @@
 .idea
 *.log
-
-# Exclude built projects
-talkA
-talkB
+node_modules
