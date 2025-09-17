@@ -11,7 +11,7 @@ background: https://cover.sli.dev
 #   body { font-family: 'Inter', sans-serif; }
 #   h1 { color: #2d3748; font-weight: 700; }
 # some information about your slides (markdown enabled)
-title: Welcome to Slidev
+title: Construire un système de plugins basé sur le WebAssembly Component Model
 info: |
   ## Slidev Starter Template
   Presentation slides for developers.
@@ -32,6 +32,392 @@ seoMeta:
   # or generate one from the first slide if not found.
   ogImage: auto
   # ogImage: https://cover.sli.dev
+---
+
+# 🎯 Pourquoi ce projet ?
+
+- **Problème** : Exemples de projets avec WebAssembly Component Model **trop simples** ou **trop complexes**
+- **Objectif** : Démontrer la puissance de WCM avec une application concrète
+- **Réalisation** : Un REPL modulaire où chaque commande est un composant Wasm
+- **Contrainte** : Le même code doit fonctionner sur 🛠️ CLI et 🌐 navigateur
+
+---
+
+# 🚀 Ce que nous allons couvrir
+
+1. **Introduction au WebAssembly Component Model**
+2. **Démo du projet**
+3. **Architecture du projet**
+
+# ⚔️ Ce que nous n'allons pas couvrir
+
+- **Détails d'implémentation de chaque langage**
+- **Tooling spécifique à chaque langage**
+
+---
+
+# 🔄 L'évolution de WebAssembly
+
+## WebAssembly → WASI → Component Model
+
+- **2017** : WebAssembly MVP - format binaire bas niveau, portable et sécurisé
+- **WASI** : WebAssembly System Interface
+- **Component Model** : Composition, interfaces, sandboxing
+
+---
+
+# 🧩 WebAssembly Component Model
+
+## Concepts clés
+
+- **WIT (WebAssembly Interface Types)** : Définir des contrats entre composants
+- **Composants** : Unités réutilisables et sandboxées
+- **Preview 2** : Version stable actuelle (celle que nous utilisons)
+- **Composabilité** : Construire des systèmes à partir de composants Wasm
+
+---
+
+# 🎬 Démo en direct :
+
+- 🛠️ Version CLI
+- 🌐 Version navigateur
+
+---
+
+# 🎬 Démo en direct :
+
+## Fonctionnalités :
+
+- Commandes de base (`echo`, `ls`, `cat`)
+- Chargement et exécution de plugins
+- Compatibilité multi-langages
+- Fonctionnalités de sécurité
+
+---
+
+# 🔍 Comment cela fonctionne
+
+## Vue d'ensemble
+
+- 🏠 **Host Runtime**
+  - 🔧 CLI (`pluginlab` rust + wasmtime)
+  - 🌐 Web (TypeScript + `jco` tranpilation of the components + browser runtime)
+- 🧩 **Composants Wasm**
+  - REPL Logic
+  - Plugins
+
+---
+
+# 🏠 Host Runtime : CLI 🔧
+
+### CLI Host (Rust + wasmtime)
+- **Runtime** : wasmtime avec support natif WCM
+- **Responsabilités** : Chargement de plugins, sandboxing filesystem, contrôle réseau
+- **Fonctionnalités** :
+  - Runtime async (basé sur `tokio`)
+  - security policies (basé sur `wasmtime`)
+  - chargement de plugins HTTP (basé sur `reqwest`)
+
+---
+
+# 🏠 Host Runtime : Web 🌐
+
+### Browser Host (TypeScript + jco)
+- **Preparation des composants** : `jco transpile`
+  - Browser ne supporte pas nativement les composants Wasm
+  - Wasm Components → Wasm Modules + glue code
+- **Runtime** : moteur JavaScript
+- **Responsabilités** : Filesystem virtuel, transpilation de composants
+- **Fonctionnalités** :
+  - Filesystem en mémoire
+  - client HTTP synchrone (basé sur `XMLHttpRequest`)
+
+---
+
+# 🧩 Composants Wasm : REPL Logic
+
+## REPL Logic (`repl-logic-guest.wasm`)
+- **Objectif** : Orchestrer l'entrée utilisateur et le dispatch de plugins
+- **Responsabilités** :
+  - Variable expansion (`export VAR=value`)
+  - Reserved commands handling (`help`, `man`)
+  - Dispatch de plugins (appel du plugin approprié)
+- **Réutilisation du code entre CLI et navigateur**
+
+---
+
+# 🧩 Composants Wasm : Plugins
+
+## Plugins (`plugin*.wasm`)
+- **Objectif** : Exécuter des commandes spécifiques (`echo`, `ls`, `cat`, `tee`)
+- **Langages** : Rust, C, Go, TypeScript
+- **Interface** : Tous implémentent le même contrat WIT
+
+---
+
+# 🧩 Host + Guest
+
+## Comment ils se connectent
+- **Host** fournit le runtime et les limites de sécurité
+- **REPL Logic** orchestre le flux
+- **Plugins** s'exécutent dans l'environnement sandboxé
+
+---
+
+# 🌐 Même code, différents hôtes
+
+## Pourquoi c'est possible
+- **WebAssembly Component Model** avec les contrats WIT définit le protocole de communication
+- **Host implementations** gèrent les détails spécifiques à l'environnement
+
+## WebAssembly Interface Types →
+
+---
+
+# 🎭 WIT : WebAssembly Interface Types
+
+```wit
+package repl:api;
+
+interface plugin {
+  enum repl-status { success, error }
+
+  record plugin-response {
+    status: repl-status,
+    stdout: option<string>,
+    stderr: option<string>,
+  }
+
+  name: func() -> string;
+  man: func() -> string;
+  run: func(payload: string) -> result<plugin-response>;
+}
+
+interface http-client {
+  record http-header { name: string, value: string }
+
+  record http-response {
+    status: u16,
+    ok: bool,
+    headers: list<http-header>,
+    body: string,
+  }
+
+  get: func(url: string, headers: list<http-header>) -> result<http-response, string>;
+}
+
+world plugin-api {
+  import http-client;
+  export plugin;
+}
+```
+
+**Separation of concerns** : Les plugins ne connaissent pas l'environnement host
+
+---
+
+# [Implémentation d'un plugin](https://github.com/topheman/webassembly-component-model-experiments/blob/master/crates/plugin-echo/src/lib.rs):
+
+```rust
+mod bindings;
+use crate::bindings::exports::repl::api::plugin::{Guest, PluginResponse, ReplStatus};
+
+struct Component;
+
+impl Guest for Component {
+  fn name() -> String { "echo".to_string() }
+  fn man() -> String { "Some man page".to_string() }
+  fn run(payload: String) -> Result<PluginResponse, ()> {
+    Ok(PluginResponse {
+      status: ReplStatus::Success,
+      stdout: Some(payload),
+      stderr: None,
+    })
+  }
+}
+
+bindings::export!(Component with_types_in bindings);
+```
+
+---
+
+# 🔄 Traitement des commandes
+
+## Comment les commandes sont traitées
+
+- **Commandes réservées** (`help`, `man`) → REPL Logic gère directement
+- **Commandes de plugins** (`echo`, `ls`) → REPL Logic dispatch vers les plugins
+
+## Deux chemins différents
+- **Exécution directe** pour les commandes intégrées
+- **Dispatch de plugins** pour les commandes externes
+
+---
+
+# 🔄 Flux des commandes réservées
+
+## Comment fonctionne la commande `help`
+
+```mermaid
+sequenceDiagram
+  participant User
+  participant Host
+  participant repl-logic-guest.wasm
+
+  User->>Host: Input: `help`
+  Host->>repl-logic-guest.wasm: readline("help")
+  repl-logic-guest.wasm-->>Host: Ready(PluginResponse { status, stdout, stderr })
+  Host-->>User: Output from PluginResponse (e.g. help text)
+```
+
+**Exécution directe** : REPL logic gère les commandes réservées en interne
+
+---
+
+# 🔄 Flux des commandes de plugins
+
+## Comment fonctionne la commande `echo Hello`
+
+```mermaid
+sequenceDiagram
+  participant User
+  participant Host
+  participant repl-logic-guest.wasm
+
+  User->>Host: Input: `echo Hello`
+  Host->>repl-logic-guest.wasm: readline("echo Hello")
+  repl-logic-guest.wasm-->>Host: ToRun({ command: "echo", payload: "Hello" })
+  Host->>Plugin: plugins["echo"].run("Hello")
+  Plugin-->>Host: PluginResponse { status, stdout, stderr }
+  Host-->>User: Output: "Hello"
+```
+
+**Dispatch de plugins** : REPL logic route vers le plugin approprié pour l'exécution
+
+---
+
+# 🔒 Sécurité et Sandboxing
+
+## Sandboxing par défaut
+
+Les runtimes WebAssembly sont sandboxés par défaut :
+
+- **Isolation complète** - Pas d'accès direct au système
+- **Contrôle granulaire** - L'host décide des permissions
+- **Sécurité native** - Pas de vulnérabilités de mémoire
+- **Cross-platform** - Même modèle de sécurité partout
+
+## Deux environnements, deux approches
+
+- **CLI** : Contrôle explicite via flags
+- **Web** : Filesystem virtuel + APIs limitées
+
+---
+
+# 🔒 Sécurité et Sandboxing - CLI 🔧
+
+## Contrôle du filesystem
+```bash
+--allow-read /path/to/data
+--allow-write /path/to/output
+--dir /data:/mnt/data
+```
+
+## Accès réseau
+```bash
+--allow-net
+--allow-net=example.com
+```
+
+**Les plugins ne peuvent accéder qu'à ce que vous autorisez !**
+
+---
+
+# 🔒 Sécurité et Sandboxing - Web 🌐
+
+## 🔧 Shim WASI Filesystem
+
+## Le challenge
+- Les navigateurs n'ont pas accès au filesystem réel
+- Les plugins comme `tee` ont besoin d'écrire des fichiers
+- Le `@bytecodealliance/preview2-shim` standard ne supporte pas les opérations WRITE
+
+## La solution
+- **Fork du shim** pour ajouter le support WRITE approprié
+- **Filesystem virtuel** monté au runtime avec des données JSON
+- **Transparent pour les plugins** - ils utilisent les APIs `wasi:filesystem` standard
+
+## Résultat
+- Le plugin `tee` fonctionne dans le navigateur ! 🎉
+- Le même code filesystem fonctionne sur CLI et web
+- Aucune modification de plugin nécessaire
+
+---
+
+# 🌍 Support multi-langages pour les plugins
+
+| Langage | Taille | Notes |
+|---------|--------|-------|
+| **C** | 56K | WASI SDK, runtime minimal |
+| **Rust** | 72K | cargo-component, sécurité |
+| **Go** | 332K | TinyGo, runtime plus large |
+| **TypeScript** | 12M | Moteur JavaScript intégré |
+
+**Même interface, implémentations différentes !**
+
+---
+
+# 🎯 Points clés
+
+## WebAssembly Component Model est prêt
+- **APIs stables** (Preview 2)
+- **Applications réelles** possibles
+- **Support multi-langages** fonctionnel
+- **Sécurité** intégrée
+
+## Permet de nouveaux patterns
+- Systèmes de plugins
+- Middleware serverless
+- Partage de logique cross-platform
+- Exécution de code sandboxée
+
+---
+
+# 🚀 Et après ?
+
+## Ce projet comme fondation
+- **Playground** pour tester de nouvelles fonctionnalités WCM
+- **Plateforme** pour expérimenter avec d'autres langages
+- **Fondation** pour des projets plus complexes
+
+## Futures fonctionnalités WCM
+- **Preview 3** : Async, streaming
+- **Meilleurs outils** et support de langages
+- **Plus d'environnements host**
+
+---
+
+# 🔗 Ressources et démo
+
+## Essayez par vous-même
+- **Démo en ligne** : [topheman.github.io/webassembly-component-model-experiments](https://topheman.github.io/webassembly-component-model-experiments)
+- **GitHub** : [github.com/topheman/webassembly-component-model-experiments](https://github.com/topheman/webassembly-component-model-experiments)
+- **Démo CLI** : [asciinema.org/a/DWYAgrjSpwlejvRJQY8AHCEfD](https://asciinema.org/a/DWYAgrjSpwlejvRJQY8AHCEfD)
+
+## Questions et discussion
+**Que construiriez-vous avec le WebAssembly Component Model ?**
+
+---
+
+# 🎉 Merci !
+
+## Contact
+- **GitHub** : [@topheman](https://github.com/topheman)
+- **Twitter** : [@topheman](https://twitter.com/topheman)
+- **Blog** : [topheman.github.io](https://topheman.github.io)
+
+**Construisons ensemble l'avenir de WebAssembly ! 🚀**
+
 ---
 
 # Welcome to Slidev
