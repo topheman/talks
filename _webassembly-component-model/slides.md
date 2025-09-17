@@ -32,6 +32,25 @@ seoMeta:
   # or generate one from the first slide if not found.
   ogImage: auto
   # ogImage: https://cover.sli.dev
+
+---
+
+# WebAssembly Component Model 🧩
+
+<div class="flex justify-center mb-10">
+  <QRCode
+    :width="300"
+    :height="300"
+    type="svg"
+    data="https://github.com/topheman/webassembly-component-model-experiments"
+    :margin="10"
+    :imageOptions="{ margin: 10 }"
+    :dotsOptions="{ color: '#6c63ff' }"
+    image="/WebAssembly_Logo.svg"
+/>
+</div>
+
+## [topheman/webassembly-component-model-experiments](https://github.com/topheman/webassembly-component-model-experiments)
 ---
 
 # 🎯 Pourquoi ce projet ?

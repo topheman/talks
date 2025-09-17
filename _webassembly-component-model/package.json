@@ -12,6 +12,12 @@
     "@slidev/theme-apple-basic": "^0.25.1",
     "@slidev/theme-default": "latest",
     "@slidev/theme-seriph": "latest",
+    "slidev-addon-qrcode": "^1.0.2",
     "vue": "^3.5.18"
+  },
+  "slidev": {
+    "addons": [
+      "slidev-addon-qrcode"
+    ]
   }
 }
