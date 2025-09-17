@@ -4,6 +4,12 @@ theme: apple-basic
 # random image from a curated Unsplash collection by Anthony
 # like them? see https://unsplash.com/collections/94734566/slidev
 background: https://cover.sli.dev
+# Global CSS file
+css: style.css
+# Alternative: inline global styles
+# css: |
+#   body { font-family: 'Inter', sans-serif; }
+#   h1 { color: #2d3748; font-weight: 700; }
 # some information about your slides (markdown enabled)
 title: Welcome to Slidev
 info: |

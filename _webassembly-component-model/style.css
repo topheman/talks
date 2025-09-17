@@ -1,0 +1,69 @@
+/*
+ * Global styles for Slidev presentation
+ * Inpired by https://github.com/topheman/webassembly-component-model-experiments/blob/master/packages/web-host/src/index.css
+ */
+
+/* Custom font imports */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* WASI Color Palette from your website */
+:root {
+  --color-wasi-purple: #6c63ff;
+  --color-wasi-violet: #9b42d6;
+  --color-wasi-accent: #5ce1e6;
+  --color-primary: var(--color-wasi-purple);
+  --color-primary-50: #f5f3ff;
+  --color-primary-100: #ede9fe;
+  --color-primary-200: #ddd6fe;
+  --color-primary-300: #c4b5fd;
+  --color-primary-400: #a78bfa;
+  --color-primary-500: #8b5cf6;
+  --color-primary-600: #7c3aed;
+  --color-primary-700: #6d28d9;
+  --color-primary-800: #5b21b6;
+  --color-primary-900: #4c1d95;
+  --color-primary-950: #2e1065;
+}
+
+/* Global body styles */
+body {
+  font-family: 'Inter', sans-serif;
+  color: #222;
+  background-color: #f8f6f4;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Heading styles with WASI colors */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-primary);
+}
+
+/* Link styles */
+a {
+  color: var(--color-primary);
+  text-decoration-line: underline;
+}
+
+a:hover {
+  text-decoration-line: none;
+}
+
+/* Code block styles */
+pre, code {
+  background-color: #f0f0f0;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.2rem;
+  font-size: 0.85em;
+  color: #222;
+}
+
+/* Focus styles for better accessibility */
+button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
