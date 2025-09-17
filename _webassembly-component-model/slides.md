@@ -5,7 +5,7 @@ theme: apple-basic
 # like them? see https://unsplash.com/collections/94734566/slidev
 background: https://cover.sli.dev
 # Global CSS file
-css: style.css
+# css: style.css
 # Alternative: inline global styles
 # css: |
 #   body { font-family: 'Inter', sans-serif; }
