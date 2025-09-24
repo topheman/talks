@@ -51,15 +51,29 @@ seoMeta:
 </div>
 
 ## [topheman/webassembly-component-model-experiments](https://github.com/topheman/webassembly-component-model-experiments)
+
+---
+layout: center
+class: text-center
 ---
 
 # 🎯 Pourquoi ce projet ?
 
-- **Problème** : Exemples de projets avec WebAssembly Component Model **trop simples** ou **trop complexes**
-- **Objectif** : Démontrer la puissance de WCM avec une application concrète
-- **Réalisation** : Un REPL modulaire où chaque commande est un composant Wasm
-- **Contrainte** : Le même code doit fonctionner sur 🛠️ CLI et 🌐 navigateur
-
+<v-click>
+<p><strong>Problème</strong> : Exemples de projets avec WebAssembly Component Model <strong>trop simples</strong> ou <strong>trop complexes</strong></p>
+</v-click>
+<v-click>
+<p><strong>Objectif</strong> : Démontrer la puissance de WCM avec une application concrète</p>
+</v-click>
+<v-click>
+<p><strong>Réalisation</strong> : Un REPL modulaire où chaque commande est un composant Wasm</p>
+</v-click>
+<v-click>
+<p><strong>Contrainte</strong> : Le même code doit fonctionner sur 🛠️ CLI et 🌐 navigateur</p>
+</v-click>
+---
+layout: center
+class: text-center
 ---
 
 # 🚀 Ce que nous allons couvrir
@@ -68,11 +82,19 @@ seoMeta:
 2. **Démo du projet**
 3. **Architecture du projet**
 
+---
+layout: center
+class: text-center
+---
+
 # ⚔️ Ce que nous n'allons pas couvrir
 
 - **Détails d'implémentation de chaque langage**
 - **Tooling spécifique à chaque langage**
 
+---
+layout: center
+class: text-center
 ---
 
 # 🔄 L'évolution de WebAssembly
@@ -91,7 +113,6 @@ seoMeta:
 
 - **WIT (WebAssembly Interface Types)** : Définir des contrats entre composants
 - **Composants** : Unités réutilisables et sandboxées
-- **Preview 2** : Version stable actuelle (celle que nous utilisons)
 - **Composabilité** : Construire des systèmes à partir de composants Wasm
 
 ---
