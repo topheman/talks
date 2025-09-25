@@ -85,10 +85,58 @@ body .slidev-layout h2 {
   @apply mb-4;
 }
 
+body .slidev-layout h3, body .slidev-layout h3:not(.opacity-100) {
+  text-transform: none;
+  opacity: 1;
+}
+
 ol {
   list-style: decimal;
 }
 
 .text-center ol, .text-center ul {
   list-style: none;
+}
+
+div.rect {
+  border: 3px solid #900000;
+  border-radius: 8px;
+  position: absolute;
+}
+div.host-runtime-description {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 320px;
+  font-size: 90%;
+}
+div.host-runtime-description p, div.host-runtime-description ul {
+  line-height: 1.2em;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+div.host-runtime-description.computer::before {
+  content: "💻";
+  position: absolute;
+  margin: 5px -25px;
+}
+div.host-runtime-description.rust::before {
+  content: "🦀";
+  position: absolute;
+  margin: 5px -25px;
+}
+div.host-runtime-description.typescript::before {
+  content: "🟦";
+  position: absolute;
+  margin: 5px -25px;
+}
+div.host-runtime-description.web::before {
+  content: "🌐";
+  position: absolute;
+  margin: 5px -25px;
+}
+div.host-runtime-description.wasm::before {
+  content: "🧩";
+  position: absolute;
+  margin: 5px -25px;
 }
