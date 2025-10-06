@@ -1,11 +1,17 @@
-# Welcome to [Slidev](https://github.com/slidevjs/slidev)!
+Sources for the talk "WebAssembly Component Model" slides talks.
 
-To start the slide show:
+The slides are built in the [`../webassembly-component-model`](../webassembly-component-model) folder.
 
-- `pnpm install`
-- `pnpm dev`
-- visit <http://localhost:3030>
+They are NOT built on the CI, but on the local machine, to avoid any surprise in the future about the build process (those are one shot slides, no need to build them on the CI).
 
-Edit the [slides.md](./slides.md) to see the changes.
+## Build
 
-Learn more about Slidev at the [documentation](https://sli.dev/).
+```bash
+npm run build
+```
+
+## Run
+
+```bash
+npm run dev
+```
