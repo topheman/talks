@@ -1,0 +1,142 @@
+/*
+ * Global styles for Slidev presentation
+ * Inpired by https://github.com/topheman/webassembly-component-model-experiments/blob/master/packages/web-host/src/index.css
+ */
+
+/* Custom font imports */
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap'); */
+
+/* WASI Color Palette from your website */
+:root {
+  --color-wasi-purple: #6c63ff;
+  --color-wasi-violet: #9b42d6;
+  --color-wasi-accent: #5ce1e6;
+  --color-primary: var(--color-wasi-purple);
+  --color-secondary: var(--color-wasi-violet);
+  --color-primary-50: #f5f3ff;
+  --color-primary-100: #ede9fe;
+  --color-primary-200: #ddd6fe;
+  --color-primary-300: #c4b5fd;
+  --color-primary-400: #a78bfa;
+  --color-primary-500: #8b5cf6;
+  --color-primary-600: #7c3aed;
+  --color-primary-700: #6d28d9;
+  --color-primary-800: #5b21b6;
+  --color-primary-900: #4c1d95;
+  --color-primary-950: #2e1065;
+}
+
+/* Global body styles */
+body {
+  /* font-family: 'Inter', sans-serif; */
+}
+
+/* Heading styles with WASI colors */
+h1, h2, h3, h4, h5, h6, strong {
+  color: var(--color-primary);
+}
+
+/* Link styles */
+a {
+  color: var(--color-primary);
+  /* text-decoration-line: underline; */
+}
+
+a:hover {
+  text-decoration-line: none;
+  color: var(--color-secondary) !important;
+}
+
+/* Focus styles for better accessibility */
+button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* body .slidev-layout h1 {
+  @apply text-3xl font-bold;
+}
+
+body .slidev-layout h2 {
+  @apply text-2xl font-bold;
+}
+
+body .slidev-layout h3 {
+  @apply text-xl font-bold;
+}
+
+body .slidev-layout h4 {
+  @apply text-lg font-bold;
+}
+
+body .slidev-layout h5 {
+  @apply text-base font-medium;
+}
+
+body .slidev-layout h6 {
+  @apply text-base font-medium;
+} */
+
+body .slidev-layout h1 {
+  @apply mb-10;
+}
+
+body .slidev-layout h2 {
+  @apply mb-4;
+}
+
+body .slidev-layout h3, body .slidev-layout h3:not(.opacity-100) {
+  text-transform: none;
+  opacity: 1;
+}
+
+ol {
+  list-style: decimal;
+}
+
+.text-center ol, .text-center ul {
+  list-style: none;
+}
+
+div.rect {
+  border: 3px solid #900000;
+  border-radius: 8px;
+  position: absolute;
+}
+div.host-runtime-description {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 320px;
+  font-size: 90%;
+}
+div.host-runtime-description p, div.host-runtime-description ul {
+  line-height: 1.2em;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+div.host-runtime-description.computer::before {
+  content: "💻";
+  position: absolute;
+  margin: 5px -25px;
+}
+div.host-runtime-description.rust::before {
+  content: "🦀";
+  position: absolute;
+  margin: 5px -25px;
+}
+div.host-runtime-description.typescript::before {
+  content: "🟦";
+  position: absolute;
+  margin: 5px -25px;
+}
+div.host-runtime-description.web::before {
+  content: "🌐";
+  position: absolute;
+  margin: 5px -25px;
+}
+div.host-runtime-description.wasm::before {
+  content: "🧩";
+  position: absolute;
+  margin: 5px -25px;
+}
