@@ -3,7 +3,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "slidev build",
+    "build": "rm -rf ../webassembly-component-model && slidev build --base /talks/webassembly-component-model/ --out ../webassembly-component-model",
     "dev": "slidev --open",
     "export": "slidev export"
   },
