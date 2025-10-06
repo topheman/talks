@@ -525,17 +525,7 @@ Il est nécessaire de passer par l'hôte.
 
 ## Comment fonctionne la commande `help`
 
-```mermaid
-sequenceDiagram
-  participant User
-  participant Host
-  participant repl-logic-guest.wasm
-
-  User->>Host: Input: `help`
-  Host->>repl-logic-guest.wasm: readline("help")
-  repl-logic-guest.wasm-->>Host: Ready(PluginResponse { status, stdout, stderr })
-  Host-->>User: Output from PluginResponse (e.g. help text)
-```
+![workflow-reserved-commands](./workflow-reserved.png)
 
 <v-switch>
 <template #1>
@@ -561,19 +551,7 @@ sequenceDiagram
 
 ## Comment fonctionne la commande `echo Hello`
 
-```mermaid
-sequenceDiagram
-  participant User
-  participant Host
-  participant repl-logic-guest.wasm
-
-  User->>Host: Input: `echo Hello`
-  Host->>repl-logic-guest.wasm: readline("echo Hello")
-  repl-logic-guest.wasm-->>Host: ToRun({ command: "echo", payload: "Hello" })
-  Host->>Plugin: plugins["echo"].run("Hello")
-  Plugin-->>Host: PluginResponse { status, stdout, stderr }
-  Host-->>User: Output: "Hello"
-```
+![workflow-plugins](./workflow-plugins.png)
 
 <v-switch>
 <template #1>
