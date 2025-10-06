@@ -666,16 +666,17 @@ Merci ! 🎉 Questions ?
 # WebAssembly Component Model 🧩
 
 <div class="flex justify-center mb-10">
-  <QRCode
-    :width="200"
-    :height="200"
+  <!-- <QRCode
+    :width="400"
+    :height="400"
     type="svg"
     data="https://github.com/topheman/webassembly-component-model-experiments"
     :margin="10"
     :imageOptions="{ margin: 10 }"
     :dotsOptions="{ color: '#6c63ff' }"
     image="/WebAssembly_Logo.svg"
-/>
+/> -->
+  <img src="./qrcode.png" width="200" height="200" />
 </div>
 
 ## [topheman/webassembly-component-model-experiments](https://github.com/topheman/webassembly-component-model-experiments)
