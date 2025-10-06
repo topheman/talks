@@ -12,11 +12,7 @@ background: https://cover.sli.dev
 #   h1 { color: #2d3748; font-weight: 700; }
 # some information about your slides (markdown enabled)
 title: Construire un système de plugins basé sur le WebAssembly Component Model
-info: |
-  ## Slidev Starter Template
-  Presentation slides for developers.
-
-  Learn more at [Sli.dev](https://sli.dev)
+info: Découvrez WebAssembly Component Model à travers un projet de repl shell cross-platform.
 # apply unocss classes to the current slide
 class: text-center
 # https://sli.dev/features/drawing
@@ -30,8 +26,8 @@ mdc: true
 seoMeta:
   # By default, Slidev will use ./og-image.png if it exists,
   # or generate one from the first slide if not found.
-  ogImage: auto
-  # ogImage: https://cover.sli.dev
+  ogImage: https://repository-images.githubusercontent.com/1002449116/0a05d77e-271c-408d-beb1-e9e48711d1c6
+favicon: https://topheman.github.io/favicon.ico
 
 ---
 
