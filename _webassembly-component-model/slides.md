@@ -37,9 +37,11 @@ favicon: https://topheman.github.io/favicon.ico
 <img src="./WebAssembly_Logo.svg" class="w-60" />
 </p>
 
-## [topheman/webassembly-component-model-experiments](https://github.com/topheman/webassembly-component-model-experiments)
+<h2><logos-github-icon /><a href="https://github.com/topheman/webassembly-component-model-experiments" style="margin-left: 10px;" target="_blank">topheman/webassembly-component-model-experiments</a></h2>
 
 ## Christophe Rosset - [@topheman](https://topheman.github.io/me/)
+
+[📖 Article complet](https://dev.to/topheman/webassembly-component-model-building-a-plugin-system-58o0)
 
 <!--
 
